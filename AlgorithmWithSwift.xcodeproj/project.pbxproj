@@ -123,9 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				6058F2B023751CF20048723A /* AppDelegate.swift */,
+				6058F30423751DCE0048723A /* LeetCode */,
 				6058F2E923751DB50048723A /* Swift */,
 				6058F2B223751CF20048723A /* ViewController.swift */,
-				6058F30423751DCE0048723A /* LeetCode */,
 				6058F2B423751CF40048723A /* Assets.xcassets */,
 				6058F2B623751CF40048723A /* Main.storyboard */,
 				6058F2B923751CF40048723A /* Info.plist */,
@@ -155,19 +155,14 @@
 		6058F2E923751DB50048723A /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				6058F2EA23751DB50048723A /* ThreeSum.swift */,
-				6058F2EB23751DB50048723A /* PPQueue.swift */,
-				6058F2EC23751DB50048723A /* PPStackOrQueue.swift */,
 				6058F2ED23751DB50048723A /* PPCodeEntry.swift */,
-				6058F2EE23751DB50048723A /* MajorityElement.swift */,
-				6058F2EF23751DB50048723A /* PPSortDemo.swift */,
-				6058F2F023751DB50048723A /* PPLinkList.swift */,
-				6058F2F123751DB50048723A /* PPTree.swift */,
-				6058F2F223751DB50048723A /* ValidParentheses.swift */,
-				6058F2F323751DB50048723A /* PPStackDemo.swift */,
 				6058F2F423751DB50048723A /* PPArrayDemo.swift */,
-				6058F2F523751DB50048723A /* LongestPalindromicSubstring.swift */,
-				6058F2F623751DB50048723A /* FirstMissingPositive.swift */,
+				6058F2F023751DB50048723A /* PPLinkList.swift */,
+				6058F2EB23751DB50048723A /* PPQueue.swift */,
+				6058F2EF23751DB50048723A /* PPSortDemo.swift */,
+				6058F2F323751DB50048723A /* PPStackDemo.swift */,
+				6058F2EC23751DB50048723A /* PPStackOrQueue.swift */,
+				6058F2F123751DB50048723A /* PPTree.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -175,6 +170,11 @@
 		6058F30423751DCE0048723A /* LeetCode */ = {
 			isa = PBXGroup;
 			children = (
+				6058F2F623751DB50048723A /* FirstMissingPositive.swift */,
+				6058F2F523751DB50048723A /* LongestPalindromicSubstring.swift */,
+				6058F2EE23751DB50048723A /* MajorityElement.swift */,
+				6058F2EA23751DB50048723A /* ThreeSum.swift */,
+				6058F2F223751DB50048723A /* ValidParentheses.swift */,
 			);
 			path = LeetCode;
 			sourceTree = "<group>";

@@ -12,9 +12,6 @@ import Foundation
 open class PPCodeEntry : NSObject {
     public override init() {
         
-        
-        
-        
     }
     
     @objc func printLog() -> Void {
@@ -81,10 +78,15 @@ open class PPCodeEntry : NSObject {
 //        let longestPalindromicSubstring = longestPalindromicSubstringObj.longestPalindrome("iambabygirl")
         
         
+//        let tree = PPSearchTree.init(rootNode: nil)
+//        tree.pp_insertNodes([10,7,12,3,9,11,1,4,8,2,5])
+//        let array = tree.pp_levelTraverse(root: tree.rootNode)
+//        print(array)
         
-        let tree = PPSearchTree.init(rootNode: nil)
-        tree.pp_insertNodes([10,7,12,3,9,11,1,4,8,2,5])
-        let array = tree.pp_levelTraverse(root: tree.rootNode)
-        print(array)
+        let sortDemo = PPSortDemo.init()
+        sortDemo.insetSort(numsArray: [3,1,5,2,4])
+        
+        let mergeSortRes = sortDemo.mergeSort(numsArray: [3,1,5,2,4])
+        print("merge\(mergeSortRes)")
     }
 }
