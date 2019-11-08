@@ -86,7 +86,8 @@ open class PPCodeEntry : NSObject {
         let sortDemo = PPSortDemo.init()
         sortDemo.insetSort(numsArray: [3,1,5,2,4])
         
-        let mergeSortRes = sortDemo.mergeSort(numsArray: [3,1,5,2,4])
-        print("merge\(mergeSortRes)")
+//        let mergeSortRes = sortDemo.pp_fastSort([3,1,5,2,4])
+        let pp_fastSort = sortDemo.pp_quickSort([7,9,6,1,8,4,1,5,2,3])
+        print("merge\(pp_fastSort)")
     }
 }
