@@ -75,29 +75,30 @@ class PPSortDemo: NSObject {
         }
         
         
-        //获取分区位置：smallerIndex，此部分可以合并成一个分区函数
-        let pivotVal = numsArray[numsArray.count-1]
+        //全部数据可分为 [左边的已整理分区（小）][右边的未整理分区（大）]
+        //获取分区位置（右边未整理区域第一个元素位置）：unsortedIndex，此部分可以合并成一个分区函数
+        let pivotVal = numsArray[numsArray.count-1]//分区的标准元素
         let count = numsArray.count
         var nums = numsArray
-        var smallerIndex = 0
-        for lagerIndex in 0..<count {
-            if nums[lagerIndex] < pivotVal {
-                (nums[lagerIndex],nums[smallerIndex]) = (nums[smallerIndex],nums[lagerIndex])
-                smallerIndex += 1
+        var unsortedIndex = 0 //未整理区第一个元素的位置
+        for currentIndex in 0..<count {
+            if nums[currentIndex] < pivotVal {
+                (nums[currentIndex],nums[unsortedIndex]) = (nums[unsortedIndex],nums[currentIndex])
+                unsortedIndex += 1
             }
         }
-        (nums[smallerIndex],nums[numsArray.count-1]) = (nums[numsArray.count-1],nums[smallerIndex])
+        (nums[unsortedIndex],nums[numsArray.count-1]) = (nums[numsArray.count-1],nums[unsortedIndex])
         
         
-        let left = Array(nums[0..<smallerIndex])
-        let right = smallerIndex+1<nums.count ? Array(nums[smallerIndex+1...numsArray.count-1]) : []
+        let left = Array(nums[0..<unsortedIndex])
+        let right = unsortedIndex+1<nums.count ? Array(nums[unsortedIndex+1...numsArray.count-1]) : []
         print("分解成两个快排\(left) & \(right)")
         
-        let result = pp_quickSort(left) + [nums[smallerIndex]] + pp_quickSort(right)
+        let result = pp_quickSort(left) + [nums[unsortedIndex]] + pp_quickSort(right)
         return result
     }
     
-    // 快速排序
+    // 别人写的快速排序
     func quicksort(_ array:[Int]) -> [Int] {
       guard array.count > 1 else {
         return array
@@ -108,5 +109,59 @@ class PPSortDemo: NSObject {
       let right = array.filter { $0 > pivot }
 
       return quicksort(left) + middle + quicksort(right)
+    }
+    //MARK: 二分搜索/二分查找
+    ///递归二分搜索有序数组，返回-1表示没找到
+    func pp_binarySearchRecursively(_ nums:[Int], _ target:Int) -> Int {
+        let index = nums.count/2
+        if target > nums[nums.count-1] || target < nums[0]{
+            return -1
+        }
+        if target == nums[index] {
+            return index
+        }
+        else if target < nums[index] {
+            return pp_binarySearchRecursively(Array(nums[0..<index]), target)
+        }
+        return pp_binarySearchRecursively(Array(nums[index..<nums.count]), target)
+    }
+    
+    /// 别人写的 https://xiaozhuanlan.com/ios-interview/5978062134
+    func binarySearchRecursively(nums: [Int], target: Int) -> Bool {
+      return binarySearchRecursively(nums: nums, target: target, left: 0, right: nums.count - 1)
+    }
+    func binarySearchRecursively(nums: [Int], target: Int, left: Int, right: Int) -> Bool {
+      guard left <= right else {
+        return false
+      }
+      let mid = (right - left) / 2 + left
+      if nums[mid] == target {
+        return true
+      } else if nums[mid] < target {
+        return binarySearchRecursively(nums: nums, target: target, left: mid + 1, right: right)
+      } else {
+        return binarySearchRecursively(nums: nums, target: target, left: left, right: mid - 1)
+      }
+    }
+    
+    ///二分搜索有序数组
+    func pp_binarySearch(_ nums:[Int], _ target:Int) -> Int {
+        var left = 0, mid = 0, right = nums.count-1
+        //注意这里的`<=` !!!当left=2,mid=2,right=3时，left=mid+1会导致left=right
+        while left <= right {
+            //当数组的长度非常大、算法又已经搜索到了最右边部分的时候，那么right + left 就会非常之大，造成溢出导致程序崩溃,下面的写法也更容易理解
+            mid = (right - left) / 2 + left//(right + left)/2
+            if target == nums[mid] {
+                return mid
+            }
+            else if target < nums[mid] {
+                right = mid - 1
+            }
+            else {
+                left = mid + 1 //Int (ceil( Double(right - left)/2.0 ))
+            }
+            
+        }
+        return -1
     }
 }

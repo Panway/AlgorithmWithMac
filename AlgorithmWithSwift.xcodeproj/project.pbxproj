@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		601440CF2376799B003E86EC /* MeetingTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601440CE2376799B003E86EC /* MeetingTime.swift */; };
+		601440D12376ABF9003E86EC /* PPUnsortedAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601440D02376ABF9003E86EC /* PPUnsortedAlgorithm.swift */; };
 		6058F2B123751CF20048723A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058F2B023751CF20048723A /* AppDelegate.swift */; };
 		6058F2B323751CF20048723A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058F2B223751CF20048723A /* ViewController.swift */; };
 		6058F2B523751CF40048723A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6058F2B423751CF40048723A /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		601440CE2376799B003E86EC /* MeetingTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTime.swift; sourceTree = "<group>"; };
+		601440D02376ABF9003E86EC /* PPUnsortedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPUnsortedAlgorithm.swift; sourceTree = "<group>"; };
 		6058F2AD23751CF20048723A /* AlgorithmWithSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlgorithmWithSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6058F2B023751CF20048723A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6058F2B223751CF20048723A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 				6058F2F323751DB50048723A /* PPStackDemo.swift */,
 				6058F2EC23751DB50048723A /* PPStackOrQueue.swift */,
 				6058F2F123751DB50048723A /* PPTree.swift */,
+				601440D02376ABF9003E86EC /* PPUnsortedAlgorithm.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 				6058F2EE23751DB50048723A /* MajorityElement.swift */,
 				6058F2EA23751DB50048723A /* ThreeSum.swift */,
 				6058F2F223751DB50048723A /* ValidParentheses.swift */,
+				601440CE2376799B003E86EC /* MeetingTime.swift */,
 			);
 			path = LeetCode;
 			sourceTree = "<group>";
@@ -313,11 +319,13 @@
 				6058F2FF23751DB50048723A /* ValidParentheses.swift in Sources */,
 				6058F30123751DB60048723A /* PPArrayDemo.swift in Sources */,
 				6058F30323751DB60048723A /* FirstMissingPositive.swift in Sources */,
+				601440CF2376799B003E86EC /* MeetingTime.swift in Sources */,
 				6058F2B323751CF20048723A /* ViewController.swift in Sources */,
 				6058F2F823751DB50048723A /* PPQueue.swift in Sources */,
 				6058F2F723751DB50048723A /* ThreeSum.swift in Sources */,
 				6058F2FB23751DB50048723A /* MajorityElement.swift in Sources */,
 				6058F2FA23751DB50048723A /* PPCodeEntry.swift in Sources */,
+				601440D12376ABF9003E86EC /* PPUnsortedAlgorithm.swift in Sources */,
 				6058F2FD23751DB50048723A /* PPLinkList.swift in Sources */,
 				6058F30223751DB60048723A /* LongestPalindromicSubstring.swift in Sources */,
 				6058F2FE23751DB50048723A /* PPTree.swift in Sources */,

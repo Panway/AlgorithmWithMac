@@ -84,10 +84,25 @@ open class PPCodeEntry : NSObject {
 //        print(array)
         
         let sortDemo = PPSortDemo.init()
-        sortDemo.insetSort(numsArray: [3,1,5,2,4])
+//        sortDemo.insetSort(numsArray: [3,1,5,2,4])
         
 //        let mergeSortRes = sortDemo.pp_fastSort([3,1,5,2,4])
-        let pp_fastSort = sortDemo.pp_quickSort([7,9,6,1,8,4,1,5,2,3])
-        print("merge\(pp_fastSort)")
+//        let quickSort = sortDemo.pp_quickSort([7,9,6,1,8,4,1,5,2,3])
+//        print("quickSort\(quickSort)")
+        
+//        let binarySearch = sortDemo.pp_binarySearchRecursively([1,2,3,4,5,6,7,8,9,11],1)
+        
+//        let binarySearch = sortDemo.pp_binarySearch([1,2,3,4,5,6,7,8,9,11],2)
+//        let binarySearch3 = sortDemo.pp_binarySearch([1,2,3,4,5,6,7,8,9,11],3)
+//        let binarySearch4 = sortDemo.pp_binarySearch([1,2,3,4,5,6,7,8,9,11],22)
+//        let binarySearch5 = sortDemo.pp_binarySearch([1,2,3,4,5,6,7,8,9,11],5)
+//        let binarySearch6 = sortDemo.pp_binarySearch([1,2,3,4,5,6,7,8,9,11],6)
+//        let binarySearch7 = sortDemo.pp_binarySearch([1,2,3,4,5,6,7,8,9,11],7)
+//        let binarySearch8 = sortDemo.pp_binarySearch([1,2,3,4,5,6,7,8,9,11],8)
+//        let binarySearch9 = sortDemo.pp_binarySearch([1,2,3,4,5,6,7,8,9,11],9)
+//        print("binarySearch\(binarySearch9)")
+        
+        subarraySum([3,1,2,5,2,6,2,8,1,7,3,6,4,9], 10)
+        
     }
 }
