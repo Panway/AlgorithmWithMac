@@ -83,7 +83,7 @@ open class PPCodeEntry : NSObject {
 //        let array = tree.pp_levelTraverse(root: tree.rootNode)
 //        print(array)
         
-        let sortDemo = PPSortDemo.init()
+//        let sortDemo = PPSortDemo.init()
 //        sortDemo.insetSort(numsArray: [3,1,5,2,4])
         
 //        let mergeSortRes = sortDemo.pp_fastSort([3,1,5,2,4])
