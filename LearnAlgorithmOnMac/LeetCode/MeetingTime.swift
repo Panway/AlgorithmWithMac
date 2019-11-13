@@ -27,7 +27,8 @@ func merge(meetingTimes: [MeetingTime]) -> [MeetingTime] {
         return meetingTimes
     }
     var meetingTimesArray:Array<MeetingTime> = meetingTimes
-    // 排序
+    // 排序，比如[4,9]&[6,7]->[4,9]、[4,6]&[4,7]->[4,7]
+    //可见首先分别比较第一个数，小的时间段放前面，然后分别比较第二个数，小的时间段放前面
     meetingTimesArray = meetingTimesArray.sorted() {
         if $0.start != $1.start {
             return $0.start < $1.start
@@ -44,9 +45,10 @@ func merge(meetingTimes: [MeetingTime]) -> [MeetingTime] {
     for i in 1..<meetingTimesArray.count {
         let last = res[res.count - 1]
         let current = meetingTimesArray[i]
-        if current.start > last.end {
+        if current.start > last.end {//时间段不重合，直接添加进去
             res.append(current)
         } else {
+            //时间段重合的，此时current.start一定大于last.start,所以只需要把end变大
             last.end = max(last.end, current.end)
         }
     }

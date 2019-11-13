@@ -144,7 +144,7 @@ class PPSortDemo: NSObject {
       }
     }
     
-    ///二分搜索有序数组
+    ///二分搜索有序数组(非递归)
     func pp_binarySearch(_ nums:[Int], _ target:Int) -> Int {
         var left = 0, mid = 0, right = nums.count-1
         //注意这里的`<=` !!!当left=2,mid=2,right=3时，left=mid+1会导致left=right

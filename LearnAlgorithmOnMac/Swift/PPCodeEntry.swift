@@ -14,7 +14,7 @@ open class PPCodeEntry : NSObject {
         
     }
     
-    @objc func printLog() -> Void {
+    @objc open func printLog() -> Void {
         print("Swft算法入口")
 //        let aaa = ValidParentheses.init()
 //        aaa.isValid("{[]}")
@@ -102,7 +102,10 @@ open class PPCodeEntry : NSObject {
 //        let binarySearch9 = sortDemo.pp_binarySearch([1,2,3,4,5,6,7,8,9,11],9)
 //        print("binarySearch\(binarySearch9)")
         
-        subarraySum([3,1,2,5,2,6,2,8,1,7,3,6,4,9], 10)
-        
+//        subarraySum([3,1,2,5,2,6,2,8,1,7,3,6,4,9], 10)
+        let time1 = MeetingTime.init(3, 5)
+        let time2 = MeetingTime.init(3, 6)
+        let time3 = MeetingTime.init(4, 7)
+        merge(meetingTimes: [time1,time2,time3])
     }
 }
