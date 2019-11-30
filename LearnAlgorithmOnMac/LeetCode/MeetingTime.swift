@@ -10,12 +10,15 @@
 import Foundation
 
 
-public class MeetingTime {
+public class MeetingTime:NSObject {
     public var start: Int
     public var end: Int
     public init(_ start: Int, _ end: Int) {
         self.start = start
         self.end = end
+    }
+    override public var description : String {
+        return "MeetingTime:[\(self.start),\(self.end)]"
     }
 }
 
@@ -27,8 +30,9 @@ func merge(meetingTimes: [MeetingTime]) -> [MeetingTime] {
         return meetingTimes
     }
     var meetingTimesArray:Array<MeetingTime> = meetingTimes
-    // 排序，比如[4,9]&[6,7]->[4,9]、[4,6]&[4,7]->[4,7]
-    //可见首先分别比较第一个数，小的时间段放前面，然后分别比较第二个数，小的时间段放前面
+    // 排序，比如[6,7],[4,9]->[4,9],[6,7]   [4,7],[4,6]->[4,6],[4,7]
+    // 首先分别比较开始时间start，start小的时间段放前面；
+    // 如果开始时间start相等就分别比较第二个数，小的时间段放前面
     meetingTimesArray = meetingTimesArray.sorted() {
         if $0.start != $1.start {
             return $0.start < $1.start

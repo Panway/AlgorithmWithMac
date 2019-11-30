@@ -32,6 +32,7 @@
 		601A6F6E237BF8F5005A7BD9 /* LinkTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F6B237BF8F5005A7BD9 /* LinkTable.cpp */; };
 		601A6F6F237BF8F5005A7BD9 /* CPPAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F6C237BF8F5005A7BD9 /* CPPAdapter.cpp */; };
 		601A6F72237BFA36005A7BD9 /* CSortDemo.c in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F71237BFA36005A7BD9 /* CSortDemo.c */; };
+		60A9995423920777009BAE03 /* PPGlobalDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A9995323920777009BAE03 /* PPGlobalDefine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		601A6F6D237BF8F5005A7BD9 /* LinkTable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LinkTable.hpp; sourceTree = "<group>"; };
 		601A6F70237BFA36005A7BD9 /* CSortDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSortDemo.h; sourceTree = "<group>"; };
 		601A6F71237BFA36005A7BD9 /* CSortDemo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = CSortDemo.c; sourceTree = "<group>"; };
+		60A9995323920777009BAE03 /* PPGlobalDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPGlobalDefine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			children = (
 				601A6F52237BF477005A7BD9 /* PPArrayDemo.swift */,
 				601A6F4C237BF477005A7BD9 /* PPCodeEntry.swift */,
+				60A9995323920777009BAE03 /* PPGlobalDefine.swift */,
 				601A6F4F237BF477005A7BD9 /* PPLinkList.swift */,
 				601A6F4A237BF477005A7BD9 /* PPQueue.swift */,
 				601A6F4D237BF477005A7BD9 /* PPSortDemo.swift */,
@@ -355,6 +358,7 @@
 				601A6F1E237BF2A6005A7BD9 /* ViewController.m in Sources */,
 				601A6F6F237BF8F5005A7BD9 /* CPPAdapter.cpp in Sources */,
 				601A6F66237BF484005A7BD9 /* ValidParentheses.swift in Sources */,
+				60A9995423920777009BAE03 /* PPGlobalDefine.swift in Sources */,
 				601A6F53237BF477005A7BD9 /* PPQueue.swift in Sources */,
 				601A6F67237BF484005A7BD9 /* LongestPalindromicSubstring.swift in Sources */,
 				601A6F26237BF2AC005A7BD9 /* main.m in Sources */,

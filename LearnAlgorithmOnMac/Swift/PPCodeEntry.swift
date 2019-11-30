@@ -76,12 +76,18 @@ open class PPCodeEntry : NSObject {
 //        let aaa = ppLinkList.getLeftList(headPoint, 4)
 //        let longestPalindromicSubstringObj = LongestPalindromicSubstring.init()
 //        let longestPalindromicSubstring = longestPalindromicSubstringObj.longestPalindrome("iambabygirl")
-        
-        
-//        let tree = PPSearchTree.init(rootNode: nil)
-//        tree.pp_insertNodes([10,7,12,3,9,11,1,4,8,2,5])
-//        let array = tree.pp_levelTraverse(root: tree.rootNode)
-//        print(array)
+// MARK: Tree
+        //        let node3 = node
+        //图片辅助理解： https://i.loli.net/2019/11/24/Q8Rn3lEk5fx4qgB.png
+        //https://i.loli.net/2019/11/08/EXNtZ7FOAI1mBWU.png
+        let tree = PPSearchTree.init(rootNode: nil)
+//        tree.pp_insertNodes([20,13,34,25,17,7,36])
+        tree.pp_insertNodes([33,16,50,13,18,34,58,15,17,25,51,66,19,27,55])//https://static001.geekbang.org/resource/image/29/2c/299c615bc2e00dc32225f4d9e3490e2c.jpg
+        tree.pp_deleteNode(13)
+        debugPrint("is valid tree ? \(tree.isValidBST(root: tree.rootNode))")
+//        tree.pp_insertNodes([20,13,34,25,17,7,29,15,8,32,24,6,36,19,21,12,16,14,18])
+        let array = tree.levelOrder(root: tree.rootNode)
+        print(array)
         
 //        let sortDemo = PPSortDemo.init()
 //        sortDemo.insetSort(numsArray: [3,1,5,2,4])
@@ -106,6 +112,7 @@ open class PPCodeEntry : NSObject {
         let time1 = MeetingTime.init(3, 5)
         let time2 = MeetingTime.init(3, 6)
         let time3 = MeetingTime.init(4, 7)
-        merge(meetingTimes: [time1,time2,time3])
+        let result = merge(meetingTimes: [time1,time2,time3])
+        debugPrint(result)
     }
 }
