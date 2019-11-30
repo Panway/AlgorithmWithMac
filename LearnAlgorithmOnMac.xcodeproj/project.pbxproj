@@ -19,7 +19,7 @@
 		601A6F55237BF478005A7BD9 /* PPCodeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F4C237BF477005A7BD9 /* PPCodeEntry.swift */; };
 		601A6F56237BF478005A7BD9 /* PPSortDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F4D237BF477005A7BD9 /* PPSortDemo.swift */; };
 		601A6F57237BF478005A7BD9 /* PPUnsortedAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F4E237BF477005A7BD9 /* PPUnsortedAlgorithm.swift */; };
-		601A6F58237BF478005A7BD9 /* PPLinkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F4F237BF477005A7BD9 /* PPLinkList.swift */; };
+		601A6F58237BF478005A7BD9 /* PPLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F4F237BF477005A7BD9 /* PPLinkedList.swift */; };
 		601A6F59237BF478005A7BD9 /* PPTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F50237BF477005A7BD9 /* PPTree.swift */; };
 		601A6F5A237BF478005A7BD9 /* PPStackDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F51237BF477005A7BD9 /* PPStackDemo.swift */; };
 		601A6F5B237BF478005A7BD9 /* PPArrayDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F52237BF477005A7BD9 /* PPArrayDemo.swift */; };
@@ -74,7 +74,7 @@
 		601A6F4C237BF477005A7BD9 /* PPCodeEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPCodeEntry.swift; sourceTree = "<group>"; };
 		601A6F4D237BF477005A7BD9 /* PPSortDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPSortDemo.swift; sourceTree = "<group>"; };
 		601A6F4E237BF477005A7BD9 /* PPUnsortedAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPUnsortedAlgorithm.swift; sourceTree = "<group>"; };
-		601A6F4F237BF477005A7BD9 /* PPLinkList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPLinkList.swift; sourceTree = "<group>"; };
+		601A6F4F237BF477005A7BD9 /* PPLinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPLinkedList.swift; sourceTree = "<group>"; };
 		601A6F50237BF477005A7BD9 /* PPTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPTree.swift; sourceTree = "<group>"; };
 		601A6F51237BF477005A7BD9 /* PPStackDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPStackDemo.swift; sourceTree = "<group>"; };
 		601A6F52237BF477005A7BD9 /* PPArrayDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPArrayDemo.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 				601A6F52237BF477005A7BD9 /* PPArrayDemo.swift */,
 				601A6F4C237BF477005A7BD9 /* PPCodeEntry.swift */,
 				60A9995323920777009BAE03 /* PPGlobalDefine.swift */,
-				601A6F4F237BF477005A7BD9 /* PPLinkList.swift */,
+				601A6F4F237BF477005A7BD9 /* PPLinkedList.swift */,
 				601A6F4A237BF477005A7BD9 /* PPQueue.swift */,
 				601A6F4D237BF477005A7BD9 /* PPSortDemo.swift */,
 				601A6F51237BF477005A7BD9 /* PPStackDemo.swift */,
@@ -370,7 +370,7 @@
 				601A6F5A237BF478005A7BD9 /* PPStackDemo.swift in Sources */,
 				601A6F68237BF484005A7BD9 /* FirstMissingPositive.swift in Sources */,
 				601A6F72237BFA36005A7BD9 /* CSortDemo.c in Sources */,
-				601A6F58237BF478005A7BD9 /* PPLinkList.swift in Sources */,
+				601A6F58237BF478005A7BD9 /* PPLinkedList.swift in Sources */,
 				601A6F59237BF478005A7BD9 /* PPTree.swift in Sources */,
 				601A6F54237BF478005A7BD9 /* PPStackOrQueue.swift in Sources */,
 				601A6F57237BF478005A7BD9 /* PPUnsortedAlgorithm.swift in Sources */,
@@ -545,6 +545,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cocoapods.LearnAlgorithmOnMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -564,6 +565,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cocoapods.LearnAlgorithmOnMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

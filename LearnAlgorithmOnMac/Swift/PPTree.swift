@@ -7,18 +7,19 @@
 //
 
 import Foundation
-
+typealias TreeNode = PPTreeNode
+// MARK:🍀二叉树🍀
 class PPTreeNode: NSObject {
     var value = 0
-    var leftNode:PPSearchTreeNode?
-    var rightNode:PPSearchTreeNode?
+    var leftNode:PPTreeNode?
+    var rightNode:PPTreeNode?
 
     /// 兼容其他人写的代码
-    open var left: PPSearchTreeNode? {
+    open var left: PPTreeNode? {
         get { return leftNode }
         set { leftNode = newValue }
     }
-    open var right: PPSearchTreeNode? {
+    open var right: PPTreeNode? {
         get { return rightNode }
         set { rightNode = newValue }
     }
@@ -39,17 +40,38 @@ class PPTreeNode: NSObject {
 class PPSearchTreeNode: PPTreeNode {
     
 }
-
-/// 二叉搜索树
-open class PPSearchTree: NSObject {
-    var rootNode:PPSearchTreeNode?
-    
-    init(rootNode:PPSearchTreeNode?) {
+open class PPTree {
+    var rootNode:PPTreeNode?
+    init(rootNode:PPTreeNode?) {
         self.rootNode = rootNode
     }
+    //MARK:PPLeetCode236 二叉树的最近公共祖先（父节点）
+    //解法来自：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/c-di-gui-jie-fa-si-xing-dai-ma-by-sunshy/
+    //    在左、右子树中分别查找是否包含p或q：
+    //    如果以下两种情况（左子树包含p，右子树包含q/左子树包含q，右子树包含p），那么此时的根节点就是最近公共祖先
+    //    如果左子树包含p和q，那么到root->left中继续查找，最近公共祖先在左子树里面
+    //    如果右子树包含p和q，那么到root->right中继续查找，最近公共祖先在右子树里面
+    func lowestCommonAncestorOfTree(root:PPTreeNode?, p:PPTreeNode, q:PPTreeNode) -> PPTreeNode? {
+        if(root == nil || root == p || root == q){ return root }
+        let left = lowestCommonAncestorOfTree(root: root?.left, p: p, q: q);
+        let right = lowestCommonAncestorOfTree(root: root?.right, p: p, q: q);
+        return (left == nil) ? right : ((right == nil) ? left : root);
+    }
+}
+
+// MARK:🍀二叉搜索树🍀
+open class PPSearchTree: PPTree {
+    
+//    init(rootNode:PPSearchTreeNode?) {
+//        self.rootNode = rootNode
+//    }
     // MARK: 插入值等于num的节点
     func pp_insertNode(_ num:Int) {
         let node = PPSearchTreeNode(num)
+        return pp_insertNode(node)
+    }
+    func pp_insertNode(_ node:PPSearchTreeNode) {
+//        let node = PPSearchTreeNode(num)
         if (self.rootNode == nil) {
             self.rootNode = node
             return
@@ -59,7 +81,7 @@ open class PPSearchTree: NSObject {
             //如果要插入的数据比节点的数据大，并且节点的右子树为空，就将新数据直接插到右子节点的位置；
             //如果不为空，就再递归遍历右子树，查找插入位置。比节点的数据小的同理
             //关键点：找到大小合适且为空的位置
-            if num > p!.value {
+            if node.value > p!.value {
                 if (p!.right == nil) {
                     p!.right = node
                     return
@@ -77,7 +99,8 @@ open class PPSearchTree: NSObject {
         
     }
     // MARK: 删除节点
-    //JAVA风格
+    //PPLeetCode450 https://leetcode-cn.com/problems/delete-node-in-a-bst/
+    //JAVA风格,递归解法：https://www.cnblogs.com/libaoquan/p/7142767.html
     func pp_deleteNode(_ value:Int) -> PPSearchTree {
         var p = self.rootNode // p 指向要删除的节点，初始化指向根节点
         var pp:PPTreeNode? = nil // pp 记录的是 p 的父节点
@@ -111,7 +134,7 @@ open class PPSearchTree: NSObject {
         }
         
         // 删除节点是叶子节点或者仅有一个子节点
-        var child:PPSearchTreeNode? // p 的子节点
+        var child:PPTreeNode? // p 的子节点
         if (p?.left != nil) {
             debugPrint("p.left not null")
             child = p?.left
@@ -249,33 +272,58 @@ open class PPSearchTree: NSObject {
     }
     //MARK:树的层级遍历，每一层分组
     func levelOrder(root: PPTreeNode?) -> [[Int]] {
-      var res = [[Int]]()
-      // 用数组来实现队列
-      var queue = [PPTreeNode]()
-
-      if let root = root {
-        queue.append(root)
-      }
-
-      while queue.count > 0 {
-        let size = queue.count
-        var level = [Int]()
-
-        for _ in 0 ..< size {
-          let node = queue.removeFirst()
-
-          level.append(node.value)
-          if let left = node.leftNode {
-            queue.append(left)
-          }
-          if let right = node.rightNode {
-            queue.append(right)
-          }
+        var res = [[Int]]()
+        // 用数组来实现队列
+        var queue = [PPTreeNode]()
+        if let root = root {
+            queue.append(root)
         }
-        res.append(level)
-      }
-
-      return res
+        
+        while queue.count > 0 {
+            let size = queue.count
+            var level = [Int]()
+            
+            for _ in 0 ..< size {
+                let node = queue.removeFirst()
+                level.append(node.val)
+                if let left = node.left {
+                    queue.append(left)
+                }
+                if let right = node.right {
+                    queue.append(right)
+                }
+            }
+            print("add level array:\(level)")
+            res.append(level)
+        }
+        return res
+        
+    }
+    //MARK:PPLeetCode235 二叉搜索树的最近公共祖先（父节点）
+    //题解 https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/solution/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian--2/
+    //从根节点开始遍历树
+    //如果节点 pp 和节点 qq 都在右子树上，那么以右孩子为根节点继续 1 的操作
+    //如果节点 pp 和节点 qq 都在左子树上，那么以左孩子为根节点继续 1 的操作
+    //如果条件 2 和条件 3 都不成立，这就意味着我们已经找到节 pp 和节点 qq 的 LCA 了（即root）
+    func lowestCommonAncestor(root:PPTreeNode, p:PPTreeNode, q:PPTreeNode) -> PPTreeNode {
+        let parentVal = root.value
+        let pVal = p.value
+        let qVal = q.value
+        if (pVal>parentVal && qVal > parentVal) {
+            if root.right != nil {
+                return lowestCommonAncestor(root: root.right!, p: p, q: q)
+            }
+            return root
+        }
+        else if (pVal<parentVal && qVal < parentVal) {
+            if root.left != nil {
+                return lowestCommonAncestor(root: root.left!, p: p, q: q)
+            }
+            return root
+        }
+        else {
+            return root
+        }
     }
     
     func insert(_ num:Int) -> Void {
@@ -299,12 +347,12 @@ open class PPSearchTree: NSObject {
         }
     }
     //获取父节点，然后插入到这个父节点左边或右边
-    func getPrev(num:Int,find:Bool) -> PPSearchTreeNode? {
+    func getPrev(num:Int,find:Bool) -> PPTreeNode? {
 //        let rootNode = self.rootNode
-        var res:Array<PPSearchTreeNode> = []
+        var res:Array<PPTreeNode> = []
         if let newPoint = self.rootNode {
             
-        var point:PPSearchTreeNode! = newPoint
+        var point:PPTreeNode! = newPoint
         while (true) {
             if ((point?.leftNode) != nil) {
                 if (num < point.leftNode?.value ?? 0 || num < point.value) {

@@ -82,7 +82,20 @@ open class PPCodeEntry : NSObject {
         //https://i.loli.net/2019/11/08/EXNtZ7FOAI1mBWU.png
         let tree = PPSearchTree.init(rootNode: nil)
 //        tree.pp_insertNodes([20,13,34,25,17,7,36])
-        tree.pp_insertNodes([33,16,50,13,18,34,58,15,17,25,51,66,19,27,55])//https://static001.geekbang.org/resource/image/29/2c/299c615bc2e00dc32225f4d9e3490e2c.jpg
+//        tree.pp_insertNodes([33,16,50,13,18,34,58,15,17,25,51,66,19,27,55])//https://static001.geekbang.org/resource/image/29/2c/299c615bc2e00dc32225f4d9e3490e2c.jpg
+        
+        
+        tree.pp_insertNodes([33,16,50,13])
+        tree.pp_insertNodes([18,34,58,15])
+        let pNode = PPSearchTreeNode(17)
+        tree.pp_insertNode(pNode)
+        let qNode = PPSearchTreeNode(25)
+        tree.pp_insertNode(qNode)
+        tree.pp_insertNodes([51,66,19,27,55])
+        let lowestAncestor = tree.lowestCommonAncestorOfTree(root: tree.rootNode!, p: pNode, q: qNode)
+        debugPrint(lowestAncestor as Any)//二叉树的最近公共祖先
+        
+        
         tree.pp_deleteNode(13)
         debugPrint("is valid tree ? \(tree.isValidBST(root: tree.rootNode))")
 //        tree.pp_insertNodes([20,13,34,25,17,7,29,15,8,32,24,6,36,19,21,12,16,14,18])

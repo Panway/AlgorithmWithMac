@@ -73,7 +73,7 @@ class PPLinkedListNode: NSObject {
 
 
 //MARK: 链表
-open class PPLinkList: NSObject {
+open class PPLinkedList: NSObject {
     var head:PPLinkedListNode?
     init(head:PPLinkedListNode) {
         self.head = head
@@ -105,7 +105,7 @@ open class PPLinkList: NSObject {
         }
     }
     ///追加链表
-    func pp_appendLinkList(_ newLinkList:PPLinkList) -> PPLinkList{
+    func pp_appendLinkList(_ newLinkList:PPLinkedList) -> PPLinkedList{
         //找最后一个节点
         var lastNode = self.head
         while lastNode?.next != nil {
@@ -150,7 +150,7 @@ open class PPLinkList: NSObject {
 }
 
 //MARK: 单向链表
-class PPSinglyLinkedList: PPLinkList {
+class PPSinglyLinkedList: PPLinkedList {
     var tail:PPLinkedListNode?
     // 别人的尾插法
      func appendToTail(_ val: Int) {
