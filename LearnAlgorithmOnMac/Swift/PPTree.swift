@@ -56,6 +56,17 @@ open class PPTree {
         let left = lowestCommonAncestorOfTree(root: root?.left, p: p, q: q);
         let right = lowestCommonAncestorOfTree(root: root?.right, p: p, q: q);
         return (left == nil) ? right : ((right == nil) ? left : root);
+        /* 方便理解：
+        if (left != nil && right != nil) {
+            return root;//如果root的左子树查到了，右子树也查到了
+        }
+        if (left != nil) {
+            return left;//如果root的左子树查到了，就是查到的这个节点
+        }
+        if (right != nil) {
+            return right;//如果root的右子树查到了，就是查到的这个节点
+        }
+ */
     }
 }
 

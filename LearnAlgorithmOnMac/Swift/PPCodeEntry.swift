@@ -16,6 +16,8 @@ open class PPCodeEntry : NSObject {
     
     @objc open func printLog() -> Void {
         print("Swft算法入口")
+        let solution = PPSolution()
+        solution.testMinimumTotal()
 //        let aaa = ValidParentheses.init()
 //        aaa.isValid("{[]}")
         
@@ -76,7 +78,9 @@ open class PPCodeEntry : NSObject {
 //        let aaa = ppLinkList.getLeftList(headPoint, 4)
 //        let longestPalindromicSubstringObj = LongestPalindromicSubstring.init()
 //        let longestPalindromicSubstring = longestPalindromicSubstringObj.longestPalindrome("iambabygirl")
-// MARK: Tree
+        
+        
+        // MARK: Tree
         //        let node3 = node
         //图片辅助理解： https://i.loli.net/2019/11/24/Q8Rn3lEk5fx4qgB.png
         //https://i.loli.net/2019/11/08/EXNtZ7FOAI1mBWU.png
@@ -89,9 +93,9 @@ open class PPCodeEntry : NSObject {
         tree.pp_insertNodes([18,34,58,15])
         let pNode = PPSearchTreeNode(17)
         tree.pp_insertNode(pNode)
-        let qNode = PPSearchTreeNode(25)
+        tree.pp_insertNodes([25,51,66,19,27])
+        let qNode = PPSearchTreeNode(55)
         tree.pp_insertNode(qNode)
-        tree.pp_insertNodes([51,66,19,27,55])
         let lowestAncestor = tree.lowestCommonAncestorOfTree(root: tree.rootNode!, p: pNode, q: qNode)
         debugPrint(lowestAncestor as Any)//二叉树的最近公共祖先
         
