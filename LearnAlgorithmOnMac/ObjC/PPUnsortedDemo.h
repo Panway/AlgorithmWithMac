@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PPUnsortedDemo : NSObject
 - (void)testReverseString;
+/*一个字符串最长且没有重复字符的子串*/
+- (NSString *)findNoDuplicateSubString: (NSString *)originString;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

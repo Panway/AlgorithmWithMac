@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import <LearnAlgorithmOnMac-Swift.h>
 #import <Foundation/Foundation.h>
+#import "PPUnsortedDemo.h"
+
 //struct BinaryTreeNode {
 //    int val;
 //    BinaryTreeNode left;
@@ -24,8 +26,12 @@
 
 
 int main(int argc, const char * argv[]) {
-    const char *testStr = "iambabygirl";
-    LongestPalindrome(testStr, strlen(testStr));
+//    const char *testStr = "iambabygirl";
+//    LongestPalindrome(testStr, strlen(testStr));
+//    PPUnsortedDemo *demo = [[PPUnsortedDemo alloc] init];
+//    NSString *str = [demo findNoDuplicateSubString:@"appleeeeee"];
+    
+    
     PPCodeEntry *link = [[PPCodeEntry alloc] init];
     [link printLog];
     //---------------断点-----------------
