@@ -174,7 +174,41 @@ class PPSinglyLinkedList: PPLinkedList {
          head = temp
        }
      }
-    
+    //MARK:反转链表
+    /// 基本思路：双指针
+    /// head=→1→2→3→4   两个操作：1.next=nil    2.next=1
+    /// head=→1←2→3→4
+    /// head=→1←2←3→4
+    /// head=→1←2←3←4
+    ///       1←2←3←4←head
+    ///感谢 https://mp.weixin.qq.com/s/Thxzq5JBWVsKNGWYSH6sDA
+    func reverseLinkedList() -> PPSinglyLinkedList {
+        var pre = self.head!
+        if pre.next == nil {
+            return self//单个节点滚粗
+        }
+        var cur = pre.next!
+        pre.next = nil// pre 是头结点，避免翻转链表后形成环,即避免翻转后变成head→4→3→2⇄1
+        while cur.next != nil {
+            let next = cur.next!//临时拿着
+            cur.next = pre//主要操作
+            //为下一次循环做准备
+            pre = cur
+            cur = next
+        }
+        cur.next = pre//虽然最后一次没满足迭代条件，但主要操作不能少
+        self.head! = cur
+        return self
+    }
+    ///反转链表测试用例：PPSinglyLinkedList.testReverseLinkedList()
+    class func testReverseLinkedList() {
+        let list1 = PPSinglyLinkedList.init(head: PPLinkedListNode(1))
+        list1.pp_appendNode(2)
+        list1.pp_appendNode(3)
+        list1.pp_appendNode(4)
+        let newList = list1.reverseLinkedList()
+        debugPrint(newList)
+    }
     //举个例子，这里用❤️代表指针，小于3的值即1、2、2就是我们的目标
     //Node [❤️"1", "6", "4", ❤️"2", "5", ❤️"3"]
     //那么循环到数字2的时候把第一个指针的next指向第二颗星,链表就变成了

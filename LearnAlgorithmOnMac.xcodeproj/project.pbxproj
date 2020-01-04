@@ -34,6 +34,8 @@
 		601A6F6F237BF8F5005A7BD9 /* CPPAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F6C237BF8F5005A7BD9 /* CPPAdapter.cpp */; };
 		601A6F72237BFA36005A7BD9 /* CSortDemo.c in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F71237BFA36005A7BD9 /* CSortDemo.c */; };
 		601B07E723965E370042DC76 /* PPSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601B07E623965E370042DC76 /* PPSolution.swift */; };
+		603E20A823B5D28700E4460D /* PPRunLoopDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603E20A723B5D28700E4460D /* PPRunLoopDemo.swift */; };
+		6051B72F23ACC362003E3EAF /* PPTicketSeller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6051B72E23ACC362003E3EAF /* PPTicketSeller.m */; };
 		60A9995423920777009BAE03 /* PPGlobalDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A9995323920777009BAE03 /* PPGlobalDefine.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +96,9 @@
 		601A6F70237BFA36005A7BD9 /* CSortDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSortDemo.h; sourceTree = "<group>"; };
 		601A6F71237BFA36005A7BD9 /* CSortDemo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = CSortDemo.c; sourceTree = "<group>"; };
 		601B07E623965E370042DC76 /* PPSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPSolution.swift; sourceTree = "<group>"; };
+		603E20A723B5D28700E4460D /* PPRunLoopDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPRunLoopDemo.swift; sourceTree = "<group>"; };
+		6051B72D23ACC362003E3EAF /* PPTicketSeller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPTicketSeller.h; sourceTree = "<group>"; };
+		6051B72E23ACC362003E3EAF /* PPTicketSeller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPTicketSeller.m; sourceTree = "<group>"; };
 		60A9995323920777009BAE03 /* PPGlobalDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPGlobalDefine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +132,8 @@
 			children = (
 				6003A3A12392A17100515B41 /* PPUnsortedDemo.h */,
 				6003A3A22392A17100515B41 /* PPUnsortedDemo.m */,
+				6051B72D23ACC362003E3EAF /* PPTicketSeller.h */,
+				6051B72E23ACC362003E3EAF /* PPTicketSeller.m */,
 			);
 			path = ObjC;
 			sourceTree = "<group>";
@@ -204,6 +211,7 @@
 				601A6F50237BF477005A7BD9 /* PPTree.swift */,
 				601B07E623965E370042DC76 /* PPSolution.swift */,
 				601A6F4E237BF477005A7BD9 /* PPUnsortedAlgorithm.swift */,
+				603E20A723B5D28700E4460D /* PPRunLoopDemo.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -383,7 +391,9 @@
 				601A6F6E237BF8F5005A7BD9 /* LinkTable.cpp in Sources */,
 				601A6F55237BF478005A7BD9 /* PPCodeEntry.swift in Sources */,
 				601A6F1B237BF2A6005A7BD9 /* AppDelegate.m in Sources */,
+				6051B72F23ACC362003E3EAF /* PPTicketSeller.m in Sources */,
 				601A6F64237BF484005A7BD9 /* MeetingTime.swift in Sources */,
+				603E20A823B5D28700E4460D /* PPRunLoopDemo.swift in Sources */,
 				601A6F5A237BF478005A7BD9 /* PPStackDemo.swift in Sources */,
 				601A6F68237BF484005A7BD9 /* FirstMissingPositive.swift in Sources */,
 				601A6F72237BFA36005A7BD9 /* CSortDemo.c in Sources */,
@@ -556,6 +566,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
 				INFOPLIST_FILE = LearnAlgorithmOnMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -576,6 +587,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
 				INFOPLIST_FILE = LearnAlgorithmOnMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

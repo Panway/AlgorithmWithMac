@@ -7,15 +7,34 @@
 //
 
 #import "ViewController.h"
+#import "PPTicketSeller.h"
+@interface ViewController ()
+{
+    NSInteger _totalTicket;
+}
+@end
+
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Do any additional setup after loading the view.
+    NSTextView *text = [[NSTextView alloc] initWithFrame:CGRectMake(100, 100, 200, 100)];
+    text.string = @"PPDemo Hub";
+    [self.view addSubview:text];
+    
+    
+//    [self testTicketSeller];
 }
 
+
+- (void)testTicketSeller {
+    PPTicketSeller *seller = [PPTicketSeller new];
+    [seller moneyTest];
+    
+    
+    
+}
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];

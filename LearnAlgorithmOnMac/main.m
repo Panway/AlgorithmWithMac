@@ -6,7 +6,7 @@
 //  Copyright © 2019 WeirdPan. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+//#import <Cocoa/Cocoa.h>
 #import <LearnAlgorithmOnMac-Swift.h>
 #import <Foundation/Foundation.h>
 #import "PPUnsortedDemo.h"
