@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6003A3A32392A17100515B41 /* PPUnsortedDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003A3A22392A17100515B41 /* PPUnsortedDemo.m */; };
+		60046E5C23FEE4D40036DFBB /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60046E5A23FEE4D40036DFBB /* Queue.swift */; };
+		60046E5D23FEE4D40036DFBB /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60046E5B23FEE4D40036DFBB /* LinkedList.swift */; };
 		601A6F1B237BF2A6005A7BD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F1A237BF2A6005A7BD9 /* AppDelegate.m */; };
 		601A6F1E237BF2A6005A7BD9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F1D237BF2A6005A7BD9 /* ViewController.m */; };
 		601A6F20237BF2AC005A7BD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601A6F1F237BF2AC005A7BD9 /* Assets.xcassets */; };
@@ -61,6 +63,8 @@
 /* Begin PBXFileReference section */
 		6003A3A12392A17100515B41 /* PPUnsortedDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPUnsortedDemo.h; sourceTree = "<group>"; };
 		6003A3A22392A17100515B41 /* PPUnsortedDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPUnsortedDemo.m; sourceTree = "<group>"; };
+		60046E5A23FEE4D40036DFBB /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		60046E5B23FEE4D40036DFBB /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		601A6F16237BF2A6005A7BD9 /* LearnAlgorithmOnMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnAlgorithmOnMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		601A6F19237BF2A6005A7BD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		601A6F1A237BF2A6005A7BD9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 				601A6F4B237BF477005A7BD9 /* PPStackOrQueue.swift */,
 				601A6F50237BF477005A7BD9 /* PPTree.swift */,
 				6050460323FCF1900031FE1C /* PPGraph.swift */,
+				60046E5B23FEE4D40036DFBB /* LinkedList.swift */,
+				60046E5A23FEE4D40036DFBB /* Queue.swift */,
 				6050460523FD0BD50031FE1C /* PPSearchAlgorithm.swift */,
 				601B07E623965E370042DC76 /* PPSolution.swift */,
 				601A6F4E237BF477005A7BD9 /* PPUnsortedAlgorithm.swift */,
@@ -395,11 +401,13 @@
 				601A6F26237BF2AC005A7BD9 /* main.m in Sources */,
 				601A6F63237BF484005A7BD9 /* ThreeSum.swift in Sources */,
 				601A6F6E237BF8F5005A7BD9 /* LinkTable.cpp in Sources */,
+				60046E5D23FEE4D40036DFBB /* LinkedList.swift in Sources */,
 				601A6F55237BF478005A7BD9 /* PPCodeEntry.swift in Sources */,
 				601A6F1B237BF2A6005A7BD9 /* AppDelegate.m in Sources */,
 				6051B72F23ACC362003E3EAF /* PPTicketSeller.m in Sources */,
 				601A6F64237BF484005A7BD9 /* MeetingTime.swift in Sources */,
 				603E20A823B5D28700E4460D /* PPRunLoopDemo.swift in Sources */,
+				60046E5C23FEE4D40036DFBB /* Queue.swift in Sources */,
 				601A6F5A237BF478005A7BD9 /* PPStackDemo.swift in Sources */,
 				601A6F68237BF484005A7BD9 /* FirstMissingPositive.swift in Sources */,
 				601A6F72237BFA36005A7BD9 /* CSortDemo.c in Sources */,

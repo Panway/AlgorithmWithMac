@@ -11,6 +11,11 @@ import Foundation
  笔记：
  在某种程度上，无向图是双向的有向图
  链表和树是图的简化版本
+ 如何用代码表示图？首先，图是由顶点和边组成的;
+ 顶点可以用结构体Vertex来表示，值是data;
+ 边可以用结构体Edge表示，属性有起始点source、目的点destination、权重weight组成。
+ 那么图就可以遵守协议Graphable的邻接表来表示（用`顶点`当key、`边组成的数组`当value），有创建顶点并初始化顶点对应的边数组方法，
+ 有了两个以上的顶点之后，就可以创建边并把边添加到邻接表里
  
  */
 // Thanks to raywenderlich:
@@ -67,8 +72,16 @@ extension Edge: Hashable {
             lhs.destination == rhs.destination &&
             lhs.weight == rhs.weight
     }
+//    var description: String {
+//        return "Edge:[\(source)] ---> [\(destination)] (\(String(describing: weight)))"
+//    }
+    
 }
-
+extension Edge: CustomStringConvertible {
+    public var description: String {
+        return "🎈Edge:[\(source)] ---> [\(destination)] (\(String(describing: weight)))"
+    }
+}
 
 
 
@@ -88,7 +101,7 @@ protocol Graphable {
 
 
 open class AdjacencyList<T: Hashable> {
-    //保存图表，key是顶点，value是边
+    //保存图的字典，key是顶点，value是边组成的数组
     public var adjacencyDict : [Vertex<T>: [Edge<T>]] = [:]
     public init() {}
 }
@@ -114,7 +127,7 @@ extension AdjacencyList: Graphable {
     public func createVertex(data: Element) -> Vertex<Element> {
         let vertex = Vertex(data: data)
         if adjacencyDict[vertex] == nil {
-            adjacencyDict[vertex] = []//初始化边缘数组并返回顶点
+            adjacencyDict[vertex] = []//初始化边数组并返回顶点
         }
         return vertex
     }
