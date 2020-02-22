@@ -133,7 +133,7 @@ extension AdjacencyList: Graphable {
     }
 
     //检查类型是有向还是无向，并创建正确的边
-    public func add(_ type: EdgeType, from source: Vertex<Element>, to destination: Vertex<Element>, weight: Double?) {
+    public func add(_ type: EdgeType, from source: Vertex<Element>, to destination: Vertex<Element>, weight: Double? = 0) {
         switch type {
         case .directed:
             addDirectedEdge(from: source, to: destination, weight: weight)

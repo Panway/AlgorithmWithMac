@@ -38,6 +38,7 @@ enum Visit<Element: Hashable> {
 }
 
 extension Graphable {
+    // MARK: - 广度优先搜索
     ///广度优先搜索
     ///感谢 https://www.raywenderlich.com/710-swift-algorithm-club-swift-breadth-first-search
     public func breadthFirstSearch(from source: Vertex<Element>, to destination: Vertex<Element>)
@@ -167,6 +168,75 @@ class PPSearchAlgorithm: NSObject {
             }
         }
     }
+    
+    //MARK: - 深度优先搜索
+    /// 深度优先搜索
+    /// 感谢 https://www.raywenderlich.com/661-swift-algorithm-club-swift-depth-first-search
+    /// - Parameter start: 起始点
+    /// - Parameter end: 目标点
+    /// - Parameter graph: 图
+    func depthFirstSearch(from start: Vertex<String>, to end: Vertex<String>, graph: AdjacencyList<String>) -> Stack<Vertex<String>> {
+        var visited = Set<Vertex<String>>() // 1 存储所有已访问的顶点,防止无限循环
+        var stack = Stack<Vertex<String>>() // 2 存储路径经过的顶点，先入栈，如果发现不是就弹出
+        
+
+        stack.push(start)
+        visited.insert(start)// 4 先测试第一个点
+
+        outer: while let vertex = stack.peek(), vertex != end { // 1
+            
+            guard let neighbors = graph.edges(from: vertex), neighbors.count > 0 else { // 4 检查起点是否有邻居，如果连邻居都没有，那就直接返回
+                debugPrint("backtrack from \(vertex)")
+                stack.pop()
+                continue
+            }
+            
+            for edge in neighbors { // 5 如果顶点有任何边，就遍历每个边
+                if !visited.contains(edge.destination) {
+                    visited.insert(edge.destination)
+                    stack.push(edge.destination)
+                    print(stack.description)
+                    continue outer
+                }
+            }
+            
+            debugPrint("backtrack from \(vertex)") // 6 如果已经访问了当前顶点的所有边，则意味着我们到达了死角，找不到目标点
+            stack.pop()
+        }
+
+        
+        return stack // 3 返回一个装满顶点的栈（路径）
+    }
+    func testDepthFirstSearch() {
+        //: ![image.png](https://i.loli.net/2020/02/22/3iyFkulU42hbYaD.png)
+        // 实际应用：如何找到上图中从S到E的路径
+        // Sample Graph
+        let adjacencyList = AdjacencyList<String>()
+        
+        let s = adjacencyList.createVertex(data: "S")
+        let a = adjacencyList.createVertex(data: "A")
+        let b = adjacencyList.createVertex(data: "B")
+        let c = adjacencyList.createVertex(data: "C")
+        let d = adjacencyList.createVertex(data: "D")
+        let f = adjacencyList.createVertex(data: "F")
+        let g = adjacencyList.createVertex(data: "G")
+        let e = adjacencyList.createVertex(data: "E")
+        
+        adjacencyList.add(.undirected, from: s, to: a)
+        adjacencyList.add(.undirected, from: a, to: b)
+        adjacencyList.add(.undirected, from: a, to: d)
+        adjacencyList.add(.undirected, from: a, to: c)
+        adjacencyList.add(.undirected, from: b, to: d)
+        adjacencyList.add(.undirected, from: d, to: g)
+        adjacencyList.add(.undirected, from: d, to: f)
+        adjacencyList.add(.undirected, from: f, to: e)
+        
+//        debugPrint(adjacencyList.description)
+        debugPrint(depthFirstSearch(from: s, to: e, graph: adjacencyList))
+
+    }
+    
+    
     
 }
 
