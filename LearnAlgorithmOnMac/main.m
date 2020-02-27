@@ -45,7 +45,7 @@ int main(int argc, const char * argv[]) {
         // Setup code that might create autoreleased objects goes here.
     }
     
-    NSLog(@"exit app without start");
+    NSLog(@"WARNING: exit app without start");
 #warning exit app without start 不启动App
     exit(0);
     

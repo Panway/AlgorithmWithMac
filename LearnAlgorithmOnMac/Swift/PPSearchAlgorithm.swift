@@ -236,6 +236,12 @@ class PPSearchAlgorithm: NSObject {
 
     }
     
+    //搜索字符串测试用例
+    func testSearchStringWithSkipTable() {
+        let s = "ABCDEF"
+        let i = s.index(of: "TCDEF", usingHorspoolImprovement: true)
+        debugPrint(i ?? "-1")
+    }
     
     
 }
@@ -243,4 +249,139 @@ class PPSearchAlgorithm: NSObject {
 class PPSearchNode: PPTreeNode {
     var visited : Bool = false
     var neighbors : Array<PPSearchNode> = []
+}
+
+
+/*
+ 来源：https://github.com/raywenderlich/swift-algorithm-club/blob/master/Boyer-Moore-Horspool/BoyerMooreHorspool.swift
+ Boyer-Moore字符串搜索 BM搜索
+ 
+ This code is based on the article "Faster String Searches" by Costas Menico
+ from Dr Dobb's magazine, July 1989.
+ http://www.drdobbs.com/database/faster-string-searches/184408171
+ */
+extension String {
+    
+    fileprivate var skipTable: [Character: Int] {
+        var skipTable: [Character: Int] = [:]
+        for (i, c) in enumerated() {
+            skipTable[c] = count - i - 1
+        }
+        return skipTable
+    }
+    //主串从currentIndex开始从后往前跟模式串比较。
+    //pattern每次去掉最后一个字符再递归比较，比如：HELLO、HELL、HEL、HE、H
+    fileprivate func match(from currentIndex: Index, with pattern: String) -> Index? {
+        //检查是否超出边界，超出范围将返回nil
+        if currentIndex < startIndex { return nil }
+        if currentIndex >= endIndex { return nil }
+        //如果还没比到最左边的字符，主串和模式串就不匹配了，返回空表示没匹配成功
+        if self[currentIndex] != pattern.last { return nil }
+        //举例子：如果`HELLO`从`O`比到最左边的字符`H`，一直都匹配的话，
+        //那就说明查找成功，返回当前索引表明从此位置开始匹配
+        if pattern.count == 1 && self[currentIndex] == pattern.last { return currentIndex }
+        return match(from: index(before: currentIndex), with: "\(pattern.dropLast())")//上一个字符、
+    }
+    //MARK:使用跳过表(skip table)查找字符串
+    ///使用跳过表(skip table)查找字符串，感谢 https://www.raywenderlich.com/541-swift-algorithm-club-boyer-moore-string-search-algorithm#toc-anchor-006
+    func index(of pattern: String) -> Index? {
+        //检查模式字符串的长度是否在源字符串的范围内
+        let patternLength = pattern.count
+        guard patternLength > 0, patternLength <= count else { return nil }
+        
+        let skipTable = pattern.skipTable
+        let lastChar = pattern.last!
+        
+        // 假如在`ABCDEF`中查找`ZCDEF`,那么i的位置变动如下：
+        // A B C D E F
+        // Z C D E F   （i初始是4）→（5）
+        //      ↓
+        // A B C D E F
+        //   Z C D E F （5）→（6，此时while结束）
+        var i = index(startIndex, offsetBy: patternLength - 1)
+        while i < endIndex {
+            let c = self[i]//主串从pattern.length处的字符开始，从右到左跟pattern比较
+            //如果主串的字符跟pattern的字符匹配，就，否则就跳`skipTable[c]`步
+            //如果源字符串的当前字符与模式字符串pattern的最后一个字符匹配，则将尝试运行match函数。
+            if c == lastChar {
+                //如果返回非nil值，则意味着您已找到一个匹配项，因此您将返回与该模式匹配的索引。
+                if let k = match(from: i, with: pattern) { return k }
+                //否则，您将移至下一个索引。
+                i = index(after: i)
+            } else {
+                //如果无法进行匹配，请查阅跳过表以查看可以跳过多少个索引。
+                //如果这一跳过超出了源字符串的长度，您将直接进入结尾，然后while循环结束。
+                i = index(i, offsetBy: skipTable[c] ?? patternLength, limitedBy: endIndex) ?? endIndex
+            }
+        }
+        return nil
+    }
+    
+    
+    
+    func index(of pattern: String, usingHorspoolImprovement: Bool = false) -> Index? {
+        // 缓存要搜索的模式串长度，因为我们会多次用到它，所以我们要节省开销
+        let patternLength = pattern.count
+        guard patternLength > 0, patternLength <= self.count else { return nil }
+        
+        //制作跳过表。
+        //如果当前比较的主串字符来自模式串且跟模式串的最后一个字符不一样，该表可以确定模式串往右跳几步
+        var skipTable = [Character: Int]()
+        for (i, c) in pattern.enumerated() {
+            skipTable[c] = patternLength - i - 1
+        }
+        
+        // This points at the last character in the pattern.
+        let p = pattern.index(before: pattern.endIndex)
+        let lastChar = pattern[p]
+        
+        // The pattern is scanned right-to-left, so skip ahead in the string by
+        // the length of the pattern. (Minus 1 because startIndex already points
+        // at the first character in the source string.)
+        var i = index(startIndex, offsetBy: patternLength - 1)
+        
+        // This is a helper function that steps backwards through both strings
+        // until we find a character that doesn’t match, or until we’ve reached
+        // the beginning of the pattern.
+        func backwards() -> Index? {
+            var q = p
+            var j = i
+            while q > pattern.startIndex {
+                j = index(before: j)
+                q = index(before: q)
+                if self[j] != pattern[q] { return nil }
+            }
+            return j
+        }
+        
+        // The main loop. Keep going until the end of the string is reached.
+        while i < endIndex {
+            let c = self[i]
+            
+            // Does the current character match the last character from the pattern?
+            if c == lastChar {
+                
+                // There is a possible match. Do a brute-force search backwards.
+                if let k = backwards() { return k }
+                
+                if !usingHorspoolImprovement {
+                    // If no match, we can only safely skip one character ahead.
+                    i = index(after: i)
+                } else {
+                    // Ensure to jump at least one character (this is needed because the first
+                    // character is in the skipTable, and `skipTable[lastChar] = 0`)
+                    let jumpOffset = max(skipTable[c] ?? patternLength, 1)
+                    i = index(i, offsetBy: jumpOffset, limitedBy: endIndex) ?? endIndex
+                }
+            } else {
+                // The characters are not equal, so skip ahead. The amount to skip is
+                // determined by the skip table. If the character is not present in the
+                // pattern, we can skip ahead by the full pattern length. However, if
+                // the character *is* present in the pattern, there may be a match up
+                // ahead and we can't skip as far.
+                i = index(i, offsetBy: skipTable[c] ?? patternLength, limitedBy: endIndex) ?? endIndex
+            }
+        }
+        return nil
+    }
 }
