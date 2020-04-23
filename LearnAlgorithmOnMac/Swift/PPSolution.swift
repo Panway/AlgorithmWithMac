@@ -141,7 +141,44 @@ class PPSolution {
         debugPrint(result)
     }
     
-    
+    // PPLeetCode53 最大子序和 https://leetcode-cn.com/problems/maximum-subarray/
+    //[-12,3,6,9,1,-9,0,8,7,9,-3]
+    // 贪心算法，每一步都选择最佳方案，到最后就是全局最优的方案。
+    class func maxSubArray(_ n: [Int]) -> (startIndex: Int, endIndex: Int, maxSum: Int) {
+        let nums = n
+        var maxSum = nums[0]
+        var currentSum = nums[0]
+        var startIndex = 0
+        var endIndex = 0
+        for i in 1..<nums.count {
+            if currentSum + nums[i] < nums[i] {
+                startIndex = i
+            }
+            currentSum = max(currentSum + nums[i], nums[i])//当前的数字 vs 上一轮的自己
+            if maxSum < currentSum {
+                endIndex = i
+            }
+            maxSum = max(currentSum, maxSum)//这一轮的当前总和 vs 上一轮的自己
+            debugPrint("currentSum=\(currentSum) maxSum=\(maxSum)")
+        }
+        return (startIndex,endIndex,maxSum)
+    }
+    //https://leetcode-cn.com/problems/maximum-subarray/solution/hua-jie-suan-fa-53-zui-da-zi-xu-he-by-guanpengchn/
+    // [-2,1,-3,4,-1,2,1,-5,4]
+    class func maxSubArray2(_ nums: [Int]) -> Int {
+        var res = nums[0]
+        var sum = 0
+        for num in nums {
+            if (sum > 0) {//如果 sum > 0，则说明 sum 对结果有增益效果，则 sum 保留并加上当前遍历数字
+                sum += num
+            }
+            else {//如果 sum <= 0，则说明 sum 对结果无增益效果，需要舍弃，则 sum 直接更新为当前遍历数字
+                sum = num
+            }
+            res = max(res, sum)
+        }
+        return res
+    }
     
     
     
