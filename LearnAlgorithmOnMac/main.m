@@ -11,19 +11,6 @@
 #import <Foundation/Foundation.h>
 #import "PPUnsortedDemo.h"
 
-//struct BinaryTreeNode {
-//    int val;
-//    BinaryTreeNode left;
-//    BinaryTreeNode right;
-//};
-
-//void preOrder(struct BinaryTreeNode root) {
-////    if (root == NULL) return;
-//    printf("%s", root); // 此处为伪代码，表示打印 root 节点
-//    preOrder(root.left);
-//    preOrder(root.right);
-//}
-
 
 int main(int argc, const char * argv[]) {
 //    const char *testStr = "iambabygirl";
@@ -33,9 +20,8 @@ int main(int argc, const char * argv[]) {
     
     
     PPCodeEntry *link = [[PPCodeEntry alloc] init];
-    [link printLog];
-    //---------------断点-----------------
-    NSLog(@"====");
+    [link testCaseEntrance];
+    
 //    struct BinaryTreeNode root1={
 //        1,NULL,NULL};
 //    root1->val = 1;
@@ -45,7 +31,7 @@ int main(int argc, const char * argv[]) {
         // Setup code that might create autoreleased objects goes here.
     }
     
-    NSLog(@"WARNING: exit app without start");
+    NSLog(@"WARNING: `exit(0);` will exit app without start");
 #warning exit app without start 不启动App
     exit(0);
     

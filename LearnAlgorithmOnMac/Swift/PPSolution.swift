@@ -169,7 +169,9 @@ class PPSolution {
         var res = nums[0]
         var sum = 0
         for num in nums {
-            if (sum > 0) {//如果 sum > 0，则说明 sum 对结果有增益效果，则 sum 保留并加上当前遍历数字
+            //如果 sum > 0，则说明 sum 对结果有增益效果，则 sum 保留并加上当前遍历数字
+            //换种说法，如果sum不是负数，那么他就不会让结果变小，我们就留下他
+            if (sum > 0) {
                 sum += num
             }
             else {//如果 sum <= 0，则说明 sum 对结果无增益效果，需要舍弃，则 sum 直接更新为当前遍历数字
@@ -180,9 +182,28 @@ class PPSolution {
         return res
     }
     
-    
-    
-    
+    //PPLeetCode152 乘积最大子数组
+    //答案来自：https://leetcode-cn.com/problems/maximum-product-subarray/solution/hua-jie-suan-fa-152-cheng-ji-zui-da-zi-xu-lie-by-g/
+    //解题思路：每轮循环比较`累乘乘积`和`当前数字`，二者最大值为resMax，二者最小值为resMin，
+    //然后比较`上次乘积最大值`res和resMax谁最大，最大的即结果
+    //这里有个问题，假如当前数字是负数，那么resMax和resMin乘以这个数字后，老大和老小的地位反了，所以此时需要交换这两者
+    //测试用例：let res = PPSolution.maxProduct([2,3,-2,4]); debugPrint(res)
+    class func maxProduct(_ nums: [Int]) -> Int {
+        var res = Int.min
+        var resMin = 1
+        var resMax = 1
+        for num in nums {
+            if num < 0 {
+                let tmp = resMax
+                resMax = resMin
+                resMin = tmp
+            }
+            resMin = min(resMin * num, num)
+            resMax = max(resMax * num, num)
+            res = max(res, resMax)
+        }
+        return res
+    }
     
     
     

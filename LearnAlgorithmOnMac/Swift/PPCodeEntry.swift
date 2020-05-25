@@ -14,10 +14,22 @@ open class PPCodeEntry : NSObject {
         
     }
     
-    @objc open func printLog() -> Void {
-        print("Swft算法入口")
+    @objc open func testCaseEntrance() -> Void {
+        debugPrint("Swft算法测试用例入口")
+//        let a = PPSearchAlgorithm()
+//        a.testDepthFirstSearch()
+//        let ppRunLoopDemo = PPRunLoopDemo.init()
+//        ppRunLoopDemo.forLoopWithAutoReleasePool()
+//        ppRunLoopDemo.forLoopWithoutAutoReleasePool()
+//        PPSinglyLinkedList.testReverseLinkedList()
+        
+        return
+    }
+    func testDemo() {
+        
         let solution = PPSolution()
-        solution.testMinimumTotal()
+//        solution.testMinimumTotal()
+        solution.testLengthOfLongestSubstring()
 //        let aaa = ValidParentheses.init()
 //        aaa.isValid("{[]}")
         
@@ -131,5 +143,14 @@ open class PPCodeEntry : NSObject {
         let time3 = MeetingTime.init(4, 7)
         let result = merge(meetingTimes: [time1,time2,time3])
         debugPrint(result)
+    }
+    //LeetCode53
+    func testMaxSubArray() {
+        let sss = PPSolution.maxSubArray2([-12,3,6,9,1,-9,0,8,7,9,-3])
+        debugPrint(sss)
+        let aaa = PPSolution.maxSubArray2([-2,1,-3,4,-1,2,1,-5,4])
+        debugPrint(aaa)
+        let bbb = PPSolution.maxSubArray2([-9,-1,-2,-3])
+        debugPrint(bbb)
     }
 }
