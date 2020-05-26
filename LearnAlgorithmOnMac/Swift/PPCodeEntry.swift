@@ -4,7 +4,7 @@
 //
 //  Created by panwei on 2019/10/28.
 //  Copyright © 2019 WeirdPan. All rights reserved.
-//
+//  3400Star https://github.com/soapyigu/LeetCode-Swift
 
 import Foundation
 
@@ -16,6 +16,7 @@ open class PPCodeEntry : NSObject {
     
     @objc open func testCaseEntrance() -> Void {
         debugPrint("Swft算法测试用例入口")
+        self.testMergeKLists()
 //        let a = PPSearchAlgorithm()
 //        a.testDepthFirstSearch()
 //        let ppRunLoopDemo = PPRunLoopDemo.init()
@@ -143,6 +144,15 @@ open class PPCodeEntry : NSObject {
         let time3 = MeetingTime.init(4, 7)
         let result = merge(meetingTimes: [time1,time2,time3])
         debugPrint(result)
+    }
+    //LeetCode23 测试用例
+    func testMergeKLists() {
+        let link = PPSinglyLinkedList([1,4,5])
+        let link2 = PPSinglyLinkedList([1,3,4])
+        let link3 = PPSinglyLinkedList([2,6])
+        
+        let new = link.mergeKLists([link.head,link2.head,link3.head])
+        debugPrint(new ?? "")
     }
     //LeetCode53
     func testMaxSubArray() {

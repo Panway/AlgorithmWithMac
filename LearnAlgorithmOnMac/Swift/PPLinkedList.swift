@@ -24,8 +24,13 @@ class PPLinkedListNode: NSObject {
             des.append("\(node?.value ?? 0)")
             node = node?.next
         }
-        return "Node \(des)"
+        return "PPNode \(des)"
     }
+//    func appendNode(_ node:PPLinkedListNode) -> PPLinkedListNode {
+//        self.next = node
+//        return self
+//    }
+    
     //MARK:PPLeetCode21将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的
     //图例：L1=["1", "3", "5"] L2=["2", "4", "6"],虚拟节点dummy变化过程如下：
     //["0"] 此时p.next=L1可得到如下
@@ -151,32 +156,52 @@ open class PPLinkedList: NSObject {
 
 //MARK: 单向链表
 class PPSinglyLinkedList: PPLinkedList {
+    init(_ value: Int) {
+        let head = PPLinkedListNode(value)
+        super.init(head: head)
+    }
+    init(_ values: [Int]) {
+        super.init(head: PPLinkedListNode(values[0]))
+        self.tail = self.head
+        for value in Array(values[1..<values.count]) {
+            self.appendToTail(value)
+        }
+    }
     var tail:PPLinkedListNode?
     // 别人的尾插法
      func appendToTail(_ val: Int) {
-       if tail == nil {
-         tail = PPLinkedListNode(val)
-        self.head = tail
-       } else {
-         tail!.next = PPLinkedListNode(val)
-         tail = tail!.next
-       }
+        if tail == nil {
+            tail = PPLinkedListNode(val)
+            self.head = tail
+        }
+        else {
+            tail!.next = PPLinkedListNode(val)
+            tail = tail!.next
+        }
      }
     
      // 别人的头插法
      func appendToHead(_ val: Int) {
-       if head == nil {
-         head = PPLinkedListNode(val)
-         tail = head
-       } else {
-         let temp = PPLinkedListNode(val)
-         temp.next = head
-         head = temp
-       }
+        if head == nil {
+            head = PPLinkedListNode(val)
+            tail = head
+        }
+        else {
+            let temp = PPLinkedListNode(val)
+            temp.next = head
+            head = temp
+        }
      }
+    func appendValues(_ values:[Int]) -> PPSinglyLinkedList {
+        self.tail = self.head
+        for value in values {
+            self.appendToTail(value)
+        }
+        return self
+    }
     //MARK:反转链表
     /// 基本思路：双指针
-    /// head=→1→2→3→4   两个操作：1.next=nil    2.next=1
+    /// head=→1→2→3→4   两个操作：1.next=nil    2.next=1 （那2和3之前不是没联系了么）
     /// head=→1←2→3→4
     /// head=→1←2←3→4
     /// head=→1←2←3←4
@@ -202,7 +227,7 @@ class PPSinglyLinkedList: PPLinkedList {
     }
     ///反转链表测试用例：PPSinglyLinkedList.testReverseLinkedList()
     class func testReverseLinkedList() {
-        let list1 = PPSinglyLinkedList.init(head: PPLinkedListNode(1))
+        let list1 = PPSinglyLinkedList.init(1)//.init可省略
         list1.pp_appendNode(2)
         list1.pp_appendNode(3)
         list1.pp_appendNode(4)
@@ -301,7 +326,7 @@ class PPSinglyLinkedList: PPLinkedList {
       return dummy.next
     }
 //    https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/he-bing-liang-ge-you-xu-lian-biao-by-leetcode/
-    //MARK:PPLeetCode21将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的
+    //MARK:PPLeetCode21 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的
     //示例：
     //输入：1->2->4, 1->3->4
     //输出：1->1->2->3->4->4
@@ -311,40 +336,41 @@ class PPSinglyLinkedList: PPLinkedList {
     //时间复杂度：O(n + m) 空间复杂度：O(n + m)
     //Tips:我这里取值list1[0]后，把head指针指到head.next就可以得到list1[1:]；递归到list1或list2剩一个元素的时候（list1.head?.next == nil），需要特殊处理，即拼接两个链表
     /// 递归法合并
-    func pp_mergeTwoOrderedLinkList(list1:PPSinglyLinkedList, list2:PPSinglyLinkedList) -> PPSinglyLinkedList? {
-        print("合并\(list1)\(list2)")
-        if list1.head == nil && list2.head == nil {
-            return nil//好像用不上
+    func pp_mergeTwoListsRecursively(_ list1:PPLinkedListNode?, _ list2:PPLinkedListNode?) -> PPLinkedListNode? {
+        debugPrint("合并\(String(describing: list1))\(String(describing: list2))")
+        guard let list1 = list1 else {
+            return list2//为空值的判断
         }
-        
-        if let value1 = list1.head?.value,let value2 = list2.head?.value {
-            if (value1 <  value2) {
-                let oneNodeLinkList = PPSinglyLinkedList.init(head: PPLinkedListNode(value1))
-                if list1.head?.next == nil {
-                    return (list1.pp_appendLinkList(list2) as! PPSinglyLinkedList)
-                }
-                else {
-                    list1.head = list1.head?.next
-                    return (oneNodeLinkList.pp_appendLinkList(pp_mergeTwoOrderedLinkList(list1:list1, list2: list2)!) as! PPSinglyLinkedList)
-                }
-            }
-            else {
-                if list2.head?.next == nil {
-                    return (list2.pp_appendLinkList(list1) as! PPSinglyLinkedList)
-                }
-                let oneNodeLinkList = PPSinglyLinkedList.init(head: PPLinkedListNode(value2))
-                list2.head = list2.head?.next
-                return (oneNodeLinkList.pp_appendLinkList(pp_mergeTwoOrderedLinkList(list1:list1, list2: list2)!) as! PPSinglyLinkedList)
-            }
-            
+        guard let list2 = list2 else {
+            return list1
         }
-        
-        
-        return nil
-    
+        if (list1.value <  list2.value) {
+            list1.next = pp_mergeTwoListsRecursively(list1.next, list2)
+            return list1
+        }
+        else {
+            list2.next = pp_mergeTwoListsRecursively(list1, list2.next)
+            return list2
+        }
     }
     
     
+    //https://leetcode-cn.com/problems/merge-k-sorted-lists/
+    //跟归并排序逻辑一模一样！
+    /// PPLeetCode23 合并K个排序链表（递归法）
+    func mergeKLists(_ lists: [PPLinkedListNode?]) -> PPLinkedListNode? {
+        let count = lists.count
+        if lists.count == 0 {
+            return nil
+        }
+        else if count == 1 {
+            return lists[0]// 当任意数组分解到只有一个时返回
+        }
+        let centerIndex = count/2
+        let leftArray = Array(lists[0 ..< centerIndex ])
+        let rightArray = Array(lists[centerIndex ..< count])
+        return pp_mergeTwoListsRecursively(mergeKLists(leftArray), mergeKLists(rightArray))
+    }
     
     
 }
