@@ -20,9 +20,14 @@ class PPLinkedListNode: NSObject {
     override var description : String {
         var node:PPLinkedListNode? = self
         var des : Array<String> = []
+        var maxIndex = 100
         while node != nil {
             des.append("\(node?.value ?? 0)")
             node = node?.next
+            maxIndex -= 1
+            if maxIndex < 1 {
+                break//防止环形链表死循环
+            }
         }
         return "PPNode \(des)"
     }
@@ -141,11 +146,17 @@ open class PPLinkedList: NSObject {
     override open var description : String {
             var node = self.head
             var des : Array<String> = []
+        var maxIndex = 100
             while node != nil {
     //            if node!.value < x {
                 des.append("\(node?.value ?? 0)")
     //            }
                 node = node!.next
+                #warning("待优化")
+                maxIndex -= 1
+                if maxIndex < 1 {
+                    break//防止环形链表死循环
+                }
             }
             return "PPLinkList \(des)"
         }
@@ -156,6 +167,7 @@ open class PPLinkedList: NSObject {
 
 //MARK: 单向链表
 class PPSinglyLinkedList: PPLinkedList {
+    var tail:PPLinkedListNode?
     init(_ value: Int) {
         let head = PPLinkedListNode(value)
         super.init(head: head)
@@ -167,7 +179,6 @@ class PPSinglyLinkedList: PPLinkedList {
             self.appendToTail(value)
         }
     }
-    var tail:PPLinkedListNode?
     // 别人的尾插法
      func appendToTail(_ val: Int) {
         if tail == nil {
@@ -227,13 +238,11 @@ class PPSinglyLinkedList: PPLinkedList {
     }
     ///反转链表测试用例：PPSinglyLinkedList.testReverseLinkedList()
     class func testReverseLinkedList() {
-        let list1 = PPSinglyLinkedList.init(1)//.init可省略
-        list1.pp_appendNode(2)
-        list1.pp_appendNode(3)
-        list1.pp_appendNode(4)
+        let list1 = PPSinglyLinkedList.init([1,2,3,4])//.init可省略
         let newList = list1.reverseLinkedList()
         debugPrint(newList)
     }
+    
     //举个例子，这里用❤️代表指针，小于3的值即1、2、2就是我们的目标
     //Node [❤️"1", "6", "4", ❤️"2", "5", ❤️"3"]
     //那么循环到数字2的时候把第一个指针的next指向第二颗星,链表就变成了
@@ -357,7 +366,7 @@ class PPSinglyLinkedList: PPLinkedList {
     
     //https://leetcode-cn.com/problems/merge-k-sorted-lists/
     //跟归并排序逻辑一模一样！
-    /// PPLeetCode23 合并K个排序链表（递归法）
+    //MARK: PPLeetCode23 合并K个排序链表（递归法）
     func mergeKLists(_ lists: [PPLinkedListNode?]) -> PPLinkedListNode? {
         let count = lists.count
         if lists.count == 0 {
@@ -371,6 +380,27 @@ class PPSinglyLinkedList: PPLinkedList {
         let rightArray = Array(lists[centerIndex ..< count])
         return pp_mergeTwoListsRecursively(mergeKLists(leftArray), mergeKLists(rightArray))
     }
+    //MARK:PPLeetCode141 环形链表
+    //给定一个链表，判断链表中是否有环(检测是否是环形链表)
+    //通过使用具有 不同速度 的快、慢两个指针遍历链表，空间复杂度可以被降低至 O(1)。慢指针每次移动一步，而快指针每次移动两步。
+    
+    //如果列表中不存在环，最终快指针将会最先到达尾部，此时我们可以返回 false。
+    func hasCycle(_ head: PPLinkedListNode?) -> Bool {
+        if head == nil || head?.next == nil { return false}
+        guard let head = head else { return false}
+        var fast = head.next
+        var slow = head
+        while slow !== fast {//swift的语言特性！ `===` 代表两个元素的所有都相等
+            if fast?.next == nil {
+                return false
+            }
+            slow = slow.next!
+            fast = fast?.next?.next
+           
+        }
+        return true
+    }
+    
     
     
 }

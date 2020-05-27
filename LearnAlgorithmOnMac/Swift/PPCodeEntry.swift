@@ -16,7 +16,7 @@ open class PPCodeEntry : NSObject {
     
     @objc open func testCaseEntrance() -> Void {
         debugPrint("Swft算法测试用例入口")
-        self.testMergeKLists()
+        self.testHasCycle()
 //        let a = PPSearchAlgorithm()
 //        a.testDepthFirstSearch()
 //        let ppRunLoopDemo = PPRunLoopDemo.init()
@@ -162,5 +162,13 @@ open class PPCodeEntry : NSObject {
         debugPrint(aaa)
         let bbb = PPSolution.maxSubArray2([-9,-1,-2,-3])
         debugPrint(bbb)
+    }
+    /// PPLeetCode141 给定一个链表，判断链表中是否有环(检测是否是环形链表)
+    func testHasCycle() {
+        let list = PPSinglyLinkedList([3,2,0,4])
+        let last = list.tail
+        last?.next = list.head?.next
+        let hasCycle = list.hasCycle(list.head)
+        debugPrint(hasCycle)
     }
 }
