@@ -25,7 +25,7 @@
 		601A6F57237BF478005A7BD9 /* PPUnsortedAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F4E237BF477005A7BD9 /* PPUnsortedAlgorithm.swift */; };
 		601A6F58237BF478005A7BD9 /* PPLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F4F237BF477005A7BD9 /* PPLinkedList.swift */; };
 		601A6F59237BF478005A7BD9 /* PPTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F50237BF477005A7BD9 /* PPTree.swift */; };
-		601A6F5A237BF478005A7BD9 /* PPStackDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F51237BF477005A7BD9 /* PPStackDemo.swift */; };
+		601A6F5A237BF478005A7BD9 /* PPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F51237BF477005A7BD9 /* PPStack.swift */; };
 		601A6F5B237BF478005A7BD9 /* PPArrayDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F52237BF477005A7BD9 /* PPArrayDemo.swift */; };
 		601A6F63237BF484005A7BD9 /* ThreeSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F5D237BF484005A7BD9 /* ThreeSum.swift */; };
 		601A6F64237BF484005A7BD9 /* MeetingTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A6F5E237BF484005A7BD9 /* MeetingTime.swift */; };
@@ -90,7 +90,7 @@
 		601A6F4E237BF477005A7BD9 /* PPUnsortedAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPUnsortedAlgorithm.swift; sourceTree = "<group>"; };
 		601A6F4F237BF477005A7BD9 /* PPLinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPLinkedList.swift; sourceTree = "<group>"; };
 		601A6F50237BF477005A7BD9 /* PPTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPTree.swift; sourceTree = "<group>"; };
-		601A6F51237BF477005A7BD9 /* PPStackDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPStackDemo.swift; sourceTree = "<group>"; };
+		601A6F51237BF477005A7BD9 /* PPStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPStack.swift; sourceTree = "<group>"; };
 		601A6F52237BF477005A7BD9 /* PPArrayDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPArrayDemo.swift; sourceTree = "<group>"; };
 		601A6F5D237BF484005A7BD9 /* ThreeSum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeSum.swift; sourceTree = "<group>"; };
 		601A6F5E237BF484005A7BD9 /* MeetingTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingTime.swift; sourceTree = "<group>"; };
@@ -215,11 +215,11 @@
 				60A9995323920777009BAE03 /* PPGlobalDefine.swift */,
 				601A6F4F237BF477005A7BD9 /* PPLinkedList.swift */,
 				601A6F4A237BF477005A7BD9 /* PPQueue.swift */,
-				601A6F4D237BF477005A7BD9 /* PPSortDemo.swift */,
-				601A6F51237BF477005A7BD9 /* PPStackDemo.swift */,
+				601A6F51237BF477005A7BD9 /* PPStack.swift */,
 				601A6F4B237BF477005A7BD9 /* PPStackOrQueue.swift */,
 				601A6F50237BF477005A7BD9 /* PPTree.swift */,
 				6050460323FCF1900031FE1C /* PPGraph.swift */,
+				601A6F4D237BF477005A7BD9 /* PPSortDemo.swift */,
 				60046E5B23FEE4D40036DFBB /* LinkedList.swift */,
 				60046E5A23FEE4D40036DFBB /* Queue.swift */,
 				60046E5E24011A320036DFBB /* Stack.swift */,
@@ -411,7 +411,7 @@
 				601A6F64237BF484005A7BD9 /* MeetingTime.swift in Sources */,
 				603E20A823B5D28700E4460D /* PPRunLoopDemo.swift in Sources */,
 				60046E5C23FEE4D40036DFBB /* Queue.swift in Sources */,
-				601A6F5A237BF478005A7BD9 /* PPStackDemo.swift in Sources */,
+				601A6F5A237BF478005A7BD9 /* PPStack.swift in Sources */,
 				601A6F68237BF484005A7BD9 /* FirstMissingPositive.swift in Sources */,
 				601A6F72237BFA36005A7BD9 /* CSortDemo.c in Sources */,
 				601A6F58237BF478005A7BD9 /* PPLinkedList.swift in Sources */,
