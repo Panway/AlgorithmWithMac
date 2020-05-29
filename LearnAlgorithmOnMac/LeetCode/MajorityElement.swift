@@ -8,7 +8,7 @@
 
 import Foundation
 class MajorityElement {
-//求众数
+//求众数 PPCategory:Array
 //https://leetcode-cn.com/problems/majority-element/solution/du-le-le-bu-ru-zhong-le-le-ru-he-zhuang-bi-de-qiu-/
     //摩尔投票法
 //    题目：寻找数组中超过一半的数字，这意味着数组中其他数字出现次数的总和都是比不上这个数字出现的次数 。
