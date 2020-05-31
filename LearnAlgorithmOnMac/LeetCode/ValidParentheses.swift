@@ -94,4 +94,13 @@ class ValidParentheses: NSObject {
         return stack.isEmpty
     }
     
+    func testValid() {
+        let aaa = ValidParentheses().isValid_PP("(])")
+        let bbb = ValidParentheses().isValid_PP("()")
+        let ccc = ValidParentheses().isValid_PP("]")
+        debugPrint(aaa)
+        debugPrint(bbb)
+        debugPrint(ccc)
+    }
+    
 }

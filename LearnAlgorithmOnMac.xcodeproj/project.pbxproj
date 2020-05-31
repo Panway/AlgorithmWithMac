@@ -42,6 +42,7 @@
 		6050460623FD0BD50031FE1C /* PPSearchAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050460523FD0BD50031FE1C /* PPSearchAlgorithm.swift */; };
 		6051B72F23ACC362003E3EAF /* PPTicketSeller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6051B72E23ACC362003E3EAF /* PPTicketSeller.m */; };
 		60A9995423920777009BAE03 /* PPGlobalDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A9995323920777009BAE03 /* PPGlobalDefine.swift */; };
+		60C0E5522481FD4A002A76B5 /* MyCircularDeque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0E5512481FD4A002A76B5 /* MyCircularDeque.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		6051B72D23ACC362003E3EAF /* PPTicketSeller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPTicketSeller.h; sourceTree = "<group>"; };
 		6051B72E23ACC362003E3EAF /* PPTicketSeller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPTicketSeller.m; sourceTree = "<group>"; };
 		60A9995323920777009BAE03 /* PPGlobalDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPGlobalDefine.swift; sourceTree = "<group>"; };
+		60C0E5512481FD4A002A76B5 /* MyCircularDeque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCircularDeque.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 				601A6F5E237BF484005A7BD9 /* MeetingTime.swift */,
 				601A6F5D237BF484005A7BD9 /* ThreeSum.swift */,
 				601A6F60237BF484005A7BD9 /* ValidParentheses.swift */,
+				60C0E5512481FD4A002A76B5 /* MyCircularDeque.swift */,
 			);
 			path = LeetCode;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				601A6F57237BF478005A7BD9 /* PPUnsortedAlgorithm.swift in Sources */,
 				601A6F65237BF484005A7BD9 /* MajorityElement.swift in Sources */,
 				6003A3A32392A17100515B41 /* PPUnsortedDemo.m in Sources */,
+				60C0E5522481FD4A002A76B5 /* MyCircularDeque.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

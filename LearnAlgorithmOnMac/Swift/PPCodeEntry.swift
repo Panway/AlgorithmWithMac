@@ -31,8 +31,7 @@ open class PPCodeEntry : NSObject {
         let solution = PPSolution()
 //        solution.testMinimumTotal()
         solution.testLengthOfLongestSubstring()
-//        let aaa = ValidParentheses.init()
-//        aaa.isValid("{[]}")
+
         
 //        // 用栈实现队列
 //        var myQueue : MyQueue = MyQueue.init()

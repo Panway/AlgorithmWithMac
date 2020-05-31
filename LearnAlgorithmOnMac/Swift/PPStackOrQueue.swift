@@ -8,7 +8,7 @@
 
 import Foundation
 /// 用栈实现队列
-///
+/// 首先初始化的时候创建两个栈A和B，入列（enqueue）即向A里push。
 /// 出列(dequeue)过程(假设左边是顶部，之前一次放入3、2、1)：
 /// 用文字总结：首先如果栈B没有元素的话，将栈A的元素倒入栈B，然后取出栈B顶部的元素
 ///
@@ -45,18 +45,18 @@ struct MyQueue {
     }
     
     mutating func enqueue(_ object: Any) {
-        stackA.push(object as! PPIntegerStack.Element);
+        stackA.push(object as! PPIntegerStack.Element)
     }
     
     mutating func dequeue() -> Any? {
         shift()
-        return stackB.pop();
+        return stackB.pop()
     }
     
     fileprivate mutating func shift() {
         if stackB.isEmpty {
             while !stackA.isEmpty {
-                stackB.push(stackA.pop()!);
+                stackB.push(stackA.pop()!)
             }
         }
     }
