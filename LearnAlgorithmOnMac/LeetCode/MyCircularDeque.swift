@@ -106,8 +106,25 @@ class MyCircularDeque {
         // 注意：这个设计是非常经典的做法
         return (rear + 1) % capacity == front
     }
-    
-    
+    //------------------兼容---------------------
+    func getFirst() -> Int {
+        return getFront()
+    }
+    func getLast() -> Int {
+        return getRear()
+    }
+    @discardableResult
+    func addLast(_ value: Int) -> Bool {
+        return insertLast(value)
+    }
+    @discardableResult
+    func removeFirst() -> Bool {
+        return deleteFront()
+    }
+    @discardableResult
+    func removeLast() -> Bool {
+        return deleteLast()
+    }
     func testMyCircularDeque() {
         /*
         let deque = MyCircularDeque(8)
@@ -144,4 +161,102 @@ class MyCircularDeque {
  * let ret_7: Bool = obj.isEmpty()
  * let ret_8: Bool = obj.isFull()
  */
+
+
+///PPLeetCode239. 滑动窗口最大值
+//https://leetcode-cn.com/problems/sliding-window-maximum/
+class MaxSlidingWindow {
+    
+    let deq = MyCircularDeque(100)//100可能不太合适
+    var nums = [Int]()
+    
+    func clean_deque(_ i:Int,_ k:Int) {
+        // 删除不在滑动窗口中的元素的索引
+        if (!deq.isEmpty() && deq.getFirst() == i - k) {
+            deq.removeFirst()
+        }
+        
+        //从deq索引中删除所有小于当前元素num[i]的元素
+        while (!deq.isEmpty() && nums[i] > nums[deq.getLast()])  {
+            deq.removeLast()
+        }
+    }
+    //执行用时: 744 ms， 在所有Swift 提交中击败了5.17% 的用户
+    //内存消耗: 25.7 MB， 在所有Swift 提交中击败了100.00% 的用户
+    func maxSlidingWindow1(_ nums: [Int], _ k: Int) -> [Int] {
+        let n = nums.count
+        if (n * k == 0) {
+            return [0]
+        }
+        if (k == 1) {
+            return nums
+        }
+        
+        // 初始化双端队列和输出数组
+        self.nums = nums
+        var max_idx = 0
+        for i in 0..<k {
+            clean_deque(i, k)
+            deq.addLast(i)
+            // 计算nums[:k]里的最大值
+            if (nums[i] > nums[max_idx]) {
+                max_idx = i
+            }
+        }
+
+        var output = Array(repeating: 0, count: n - k + 1)
+        output[0] = nums[max_idx]
+        
+        // 构建输出数组
+        for i in k..<n {
+            clean_deque(i, k)
+            deq.addLast(i)
+            output[i - k + 1] = nums[deq.getFirst()]
+        }
+        return output
+    }
+    
+    
+    
+    
+    
+    /*
+     测试用例：
+     let res = MaxSlidingWindow().maxSlidingWindow([1,-1], 1)
+     let res2 = MaxSlidingWindow().maxSlidingWindow([7,2,4], 2)
+     let res3 = MaxSlidingWindow().maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)
+     */
+    ///使用数组maxIdx存储元素的索引，maxIdx从大到小排列加入的数字，
+    ///在迭代数组nums时去掉最后面的小值，删除不在当前窗口范围的index值（最前面的值）
+    ///
+    ///Time Complexity: O(n), Space Complexity: O(n)
+    ///
+    func maxSlidingWindow(_ nums: [Int], _ k: Int) -> [Int] {
+        var maxIdx = [Int]()
+        var res = [Int]()
+        
+        for i in 0..<nums.count {
+            while maxIdx.count > 0 && nums[maxIdx.last!] < nums[i] {
+                maxIdx.removeLast()
+            }
+            
+            maxIdx.append(i)
+            
+            if i >= k - 1 {
+                //主要是为了判断当前最开始那个大数的index是不是在当前窗口index范围
+           //也可以 maxIdx.first! + k <= i
+                if maxIdx.first! + k == i {
+                    maxIdx.removeFirst()//nums=[1,-1]，k=1会进来
+                }
+                
+                res.append(nums[maxIdx.first!])
+            }
+        }
+        
+        return res
+    }
+    
+    
+}
+
 
