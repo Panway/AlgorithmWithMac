@@ -43,6 +43,8 @@
 		6051B72F23ACC362003E3EAF /* PPTicketSeller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6051B72E23ACC362003E3EAF /* PPTicketSeller.m */; };
 		60A9995423920777009BAE03 /* PPGlobalDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A9995323920777009BAE03 /* PPGlobalDefine.swift */; };
 		60C0E5522481FD4A002A76B5 /* MyCircularDeque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0E5512481FD4A002A76B5 /* MyCircularDeque.swift */; };
+		60C0E5542484F6C2002A76B5 /* MySqrtx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0E5532484F6C2002A76B5 /* MySqrtx.swift */; };
+		60C0E5562484F809002A76B5 /* PPClimbStairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0E5552484F809002A76B5 /* PPClimbStairs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		6051B72E23ACC362003E3EAF /* PPTicketSeller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPTicketSeller.m; sourceTree = "<group>"; };
 		60A9995323920777009BAE03 /* PPGlobalDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPGlobalDefine.swift; sourceTree = "<group>"; };
 		60C0E5512481FD4A002A76B5 /* MyCircularDeque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCircularDeque.swift; sourceTree = "<group>"; };
+		60C0E5532484F6C2002A76B5 /* MySqrtx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySqrtx.swift; sourceTree = "<group>"; };
+		60C0E5552484F809002A76B5 /* PPClimbStairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPClimbStairs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,8 @@
 				601A6F5D237BF484005A7BD9 /* ThreeSum.swift */,
 				601A6F60237BF484005A7BD9 /* ValidParentheses.swift */,
 				60C0E5512481FD4A002A76B5 /* MyCircularDeque.swift */,
+				60C0E5532484F6C2002A76B5 /* MySqrtx.swift */,
+				60C0E5552484F809002A76B5 /* PPClimbStairs.swift */,
 			);
 			path = LeetCode;
 			sourceTree = "<group>";
@@ -406,6 +412,7 @@
 				601B07E723965E370042DC76 /* PPSolution.swift in Sources */,
 				601A6F26237BF2AC005A7BD9 /* main.m in Sources */,
 				601A6F63237BF484005A7BD9 /* ThreeSum.swift in Sources */,
+				60C0E5542484F6C2002A76B5 /* MySqrtx.swift in Sources */,
 				601A6F6E237BF8F5005A7BD9 /* LinkTable.cpp in Sources */,
 				60046E5D23FEE4D40036DFBB /* LinkedList.swift in Sources */,
 				601A6F55237BF478005A7BD9 /* PPCodeEntry.swift in Sources */,
@@ -419,6 +426,7 @@
 				601A6F72237BFA36005A7BD9 /* CSortDemo.c in Sources */,
 				601A6F58237BF478005A7BD9 /* PPLinkedList.swift in Sources */,
 				601A6F59237BF478005A7BD9 /* PPTree.swift in Sources */,
+				60C0E5562484F809002A76B5 /* PPClimbStairs.swift in Sources */,
 				60046E5F24011A320036DFBB /* Stack.swift in Sources */,
 				601A6F54237BF478005A7BD9 /* PPStackOrQueue.swift in Sources */,
 				6050460623FD0BD50031FE1C /* PPSearchAlgorithm.swift in Sources */,
