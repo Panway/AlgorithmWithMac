@@ -28,7 +28,8 @@ class PPArrayDemo: NSObject {
     fileprivate func swap<T>(_ chars: inout [T], _ p: Int, _ q: Int) {
         (chars[p], chars[q]) = (chars[q], chars[p])
     }
-    //MARK: 翻转英文句子
+    //MARK: 翻转英文句子（以单词为单位翻转）
+    //首先翻转所有字母，然后以空格字符为判断依据，来翻转当前index到这一轮的起始index
     func reverseWords(_ s: String?) -> String? {
       guard let s = s else {
         return nil//不能为空
@@ -47,6 +48,22 @@ class PPArrayDemo: NSObject {
       return String(chars)
     }
     
+    //PPLeetCode344. 反转字符串
+    //使用两个指针，-个左指针left ，右指针right
+    //开始工作时left指向首元素,right指向尾元素。
+    //交换两个指针指向的元素，并向中间移动，直到两个指针相遇。
+    func reverseString(_ s: inout [Character]) {
+        var start = 0, end = s.count-1
+        while start < end {
+            s.swapAt(start, end)
+            //或者(s[start], s[end]) = (s[start], s[end])
+            start += 1
+            end -= 1
+        }
+    }
+    //测试用例：
+    //var chars = Array("hello")
+    //PPArrayDemo().reverseString(&chars)
     
 
     
@@ -55,7 +72,7 @@ class PPArrayDemo: NSObject {
      //假设确实的数字大于len + 1，那么就算数组里len个数字只有一种可能：数字1到len且不重样，所以可得：缺失的第一个整数是 [1, len + 1] 之间，所以这是循环的区间
      //遍历数组，将 1 就填充到 nums[0] 的位置， 2 填充到 nums[1] 的位置...
      //填充完成后再遍历一次数组，如果对应的 nums[i] != i + 1，即第1个遇到的它的值不等于下标的那个数，那么这个 i + 1 就是缺失的第一个正数
-    //例子：
+    //测试用例：let res = PPArrayDemo().firstMissingPositive([-1,0,1,2,-1,-4])
     //[3,4,-1,1] （原始数组）
     //[-1,4,3,1] （第一次for循环后）
     //

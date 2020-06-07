@@ -45,6 +45,7 @@
 		60C0E5522481FD4A002A76B5 /* MyCircularDeque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0E5512481FD4A002A76B5 /* MyCircularDeque.swift */; };
 		60C0E5542484F6C2002A76B5 /* MySqrtx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0E5532484F6C2002A76B5 /* MySqrtx.swift */; };
 		60C0E5562484F809002A76B5 /* PPClimbStairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0E5552484F809002A76B5 /* PPClimbStairs.swift */; };
+		60C0E57424853BF6002A76B5 /* Myatoi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0E57324853BF6002A76B5 /* Myatoi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		60C0E5512481FD4A002A76B5 /* MyCircularDeque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCircularDeque.swift; sourceTree = "<group>"; };
 		60C0E5532484F6C2002A76B5 /* MySqrtx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySqrtx.swift; sourceTree = "<group>"; };
 		60C0E5552484F809002A76B5 /* PPClimbStairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPClimbStairs.swift; sourceTree = "<group>"; };
+		60C0E57324853BF6002A76B5 /* Myatoi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Myatoi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +251,7 @@
 				60C0E5512481FD4A002A76B5 /* MyCircularDeque.swift */,
 				60C0E5532484F6C2002A76B5 /* MySqrtx.swift */,
 				60C0E5552484F809002A76B5 /* PPClimbStairs.swift */,
+				60C0E57324853BF6002A76B5 /* Myatoi.swift */,
 			);
 			path = LeetCode;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				601A6F26237BF2AC005A7BD9 /* main.m in Sources */,
 				601A6F63237BF484005A7BD9 /* ThreeSum.swift in Sources */,
 				60C0E5542484F6C2002A76B5 /* MySqrtx.swift in Sources */,
+				60C0E57424853BF6002A76B5 /* Myatoi.swift in Sources */,
 				601A6F6E237BF8F5005A7BD9 /* LinkTable.cpp in Sources */,
 				60046E5D23FEE4D40036DFBB /* LinkedList.swift in Sources */,
 				601A6F55237BF478005A7BD9 /* PPCodeEntry.swift in Sources */,
