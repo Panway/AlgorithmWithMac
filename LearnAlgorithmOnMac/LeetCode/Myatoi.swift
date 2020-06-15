@@ -30,6 +30,7 @@ func myAtoi(_ str: String) -> Int {
     
     var index = -1
     var negative = false
+    //跳过空格
     let newStr = str.replacingOccurrences(of: " ", with: "")
     if newStr.count < 1 {
         return 0
@@ -37,15 +38,16 @@ func myAtoi(_ str: String) -> Int {
     if numTable[String(newStr.first!)] == nil {
         return 0
     }
-    let aaa: Character = "+"
-    let bbb: Character = "-"
+    let plus: Character = "+"
+    let minus: Character = "-"
     var lastChar : Character = "#"
     for char in str {
-        if (char == aaa || char == bbb) {
-            if (lastChar == aaa || lastChar == bbb) {
+        //处理正负号
+        if (char == plus || char == minus) {
+            if (lastChar == plus || lastChar == minus) {
                 return 0
             }
-            if num_str.contains(aaa) || num_str.contains(bbb) {
+            if num_str.contains(plus) || num_str.contains(minus) {
                 break
             }
             if numTable[String(lastChar)] != nil {
@@ -64,6 +66,7 @@ func myAtoi(_ str: String) -> Int {
         }
         lastChar = char
     }
+    //是否是负值判断
     if num_str.hasPrefix("-") {
         negative = true
         num_str.remove(at: num_str.startIndex)
@@ -71,11 +74,12 @@ func myAtoi(_ str: String) -> Int {
     else if num_str.hasPrefix("+") {
         num_str.remove(at: num_str.startIndex)
     }
+    //去掉前面多余的0
     while num_str.count > 0 && String(num_str.first!) == "0" {
         num_str.remove(at: num_str.startIndex)
     }
     let length = num_str.count
-    
+    //计算大小
     for i in 0..<length{
         let new = power(10, i)
         if new >= Int.max {
@@ -84,9 +88,11 @@ func myAtoi(_ str: String) -> Int {
         }
         res = res +  new * numTable[String(num_str.removeLast())]!
     }
+    //负值乘以-1
     if negative {
         res = res * -1
     }
+    //大小边界判断
     // [−2^31,  2^31 − 1]
     if res < -Int(pow(2.0, Double(31))) {
         return -Int(pow(2.0, Double(31)))

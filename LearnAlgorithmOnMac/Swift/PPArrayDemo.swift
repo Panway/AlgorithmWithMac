@@ -28,26 +28,41 @@ class PPArrayDemo: NSObject {
     fileprivate func swap<T>(_ chars: inout [T], _ p: Int, _ q: Int) {
         (chars[p], chars[q]) = (chars[q], chars[p])
     }
-    //MARK: 翻转英文句子（以单词为单位翻转）
+    //MARK: PPLeetCode151 翻转英文句子（以单词为单位翻转）
+    //https://leetcode-cn.com/problems/reverse-words-in-a-string/
     //首先翻转所有字母，然后以空格字符为判断依据，来翻转当前index到这一轮的起始index
-    func reverseWords(_ s: String?) -> String? {
-      guard let s = s else {
-        return nil//不能为空
-      }
-     
-      var chars = Array(s), start = 0
-      reverse(&chars, 0, chars.count - 1)//整个字符串翻转，"the sky is blue" -> "eulb si yks eht"
-     
-      for i in 0 ..< chars.count {
-        if i == chars.count - 1 || chars[i + 1] == " " {
-          reverse(&chars, start, i)//"👉eulb👈 si yks eht" -> "👉blue👈 si yks eht"
-          start = i + 2//"blue 👉si yks eht"
+    func pp_reverseWords(_ s: String) -> String {
+        var chars = Array(s), start = 0
+        reverse(&chars, 0, chars.count - 1)//整个字符串翻转，"the sky is blue" -> "eulb si yks eht"
+        while chars.first == " " {
+            chars.removeFirst()
         }
-      }
-     
-      return String(chars)
+        while chars.last == " " {
+            chars.removeLast()
+        }
+        for i in 0 ..< chars.count {
+            if i == chars.count - 1 || chars[i + 1] == " " {
+                reverse(&chars, start, i)//"👉eulb👈 si yks eht" -> "👉blue👈 si yks eht"
+                start = i + 2//"blue 👉si yks eht"
+            }
+        }
+        
+        var newChars = [Character]()
+        for i in 0 ..< chars.count {
+            if i > 0 && chars[i-1] == " " && chars[i] == " "{
+                continue
+            }
+            newChars.append(chars[i])
+        }
+        return String(newChars)
     }
-    
+    //测试用例
+    func testReverseWords() {
+        //let str = "  hello world!  "
+        let str = "a good   example"
+        let newStr = PPArrayDemo().pp_reverseWords(str)
+        debugPrint(newStr)
+    }
     //PPLeetCode344. 反转字符串
     //使用两个指针，-个左指针left ，右指针right
     //开始工作时left指向首元素,right指向尾元素。
