@@ -63,7 +63,6 @@ open class PPTree {
     }
     
     func pp_insertNode(_ node:PPTreeNode) {
-        //        let node = PPTreeNode(num)
         if (self.rootNode == nil) {
             self.rootNode = node
             return
@@ -108,7 +107,7 @@ open class PPTree {
 
 
 
-// MARK:🍀二叉搜索树🍀
+// MARK:二叉搜索树🌲
 open class PPSearchTree: PPTree {
     
 //    init(rootNode:PPTreeNode?) {
@@ -209,90 +208,7 @@ open class PPSearchTree: PPTree {
       return _helper(node.leftNode, min, node.value) && _helper(node.rightNode, node.value, max)
     }
     
-    // MARK:前序遍历(用栈实现,先打印这个节点，然后再打印它的左子树，最后打印它的右子树)
-    func preorderTraversal(root: PPTreeNode?) -> [Int] {
-        var res = [Int]()
-        var stack = [PPTreeNode]()
-        var node = root
-        
-        while !stack.isEmpty || node != nil {
-            debugPrint("node=\(node?.value ?? -1)")
-            if node != nil {
-                res.append(node!.value)
-                stack.append(node!)
-                node = node!.leftNode
-            } else {
-                node = stack.removeLast().rightNode
-            }
-        }
-        
-        return res
-    }
-    //MARK:中序遍历
-    //图片辅助理解： https://i.loli.net/2019/11/08/EXNtZ7FOAI1mBWU.png
-    //由图可以看出，首先要找到最左侧的叶子节点存到栈里，然后每次出栈一个节点，遍历打印该节点和右节点
-    func inorderTraversal(root: PPTreeNode?) -> [Int] {
-        var res = [Int]()
-        var stack = [PPTreeNode]()
-        var node = root
-        
-//        if ((node?.leftNode) != nil) {
-//            node = node?.leftNode
-//            var leftA:Array<Int> = inorderTraversal(root: node?.leftNode)
-//            leftA.append(node!.value)
-//            return leftA
-//        }
-//            
-//        if ((node?.rightNode) != nil) {
-//            return inorderTraversal(root: node?.rightNode)
-//        }
-//        inorderTraversal(root: node?.leftNode)
-//        inorderTraversal(root: node?.leftNode)
-        while !stack.isEmpty || node != nil {
-            debugPrint("当前node=\(String(describing: node))")
-            if node != nil {
-                stack.append(node!)
-                node = node!.leftNode
-            } else {
-                node = stack.removeLast()
-                res.append(node?.value ?? -1 )
-                node = node?.rightNode
-            }
-        }
-        
-        return res
-    }
     
-    
-    //MARK:树的层级遍历，每一层分组
-    func levelOrder(root: PPTreeNode?) -> [[Int]] {
-        var res = [[Int]]()
-        // 用数组来实现队列
-        var queue = [PPTreeNode]()
-        if let root = root {
-            queue.append(root)
-        }
-        
-        while queue.count > 0 {
-            let size = queue.count
-            var level = [Int]()
-            
-            for _ in 0 ..< size {
-                let node = queue.removeFirst()
-                level.append(node.val)
-                if let left = node.left {
-                    queue.append(left)
-                }
-                if let right = node.right {
-                    queue.append(right)
-                }
-            }
-            debugPrint("add level array:\(level)")
-            res.append(level)
-        }
-        return res
-        
-    }
     //MARK:PPLeetCode235 二叉搜索树的最近公共祖先（父节点）
     //题解 https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/solution/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian--2/
     //从根节点开始遍历树
@@ -394,6 +310,97 @@ open class PPSearchTree: PPTree {
 
 
 class PPTreeSolution {
+    //MARK:PPLeetCode94 二叉树的中序遍历
+    //https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
+    //图片辅助理解： https://i.loli.net/2019/11/08/EXNtZ7FOAI1mBWU.png
+    //顺序：左自右，如果节点不为空，要把它添加到结果集里吗？肯定不行，得先把它加进去，迭代它的左子节点
+    //迭代到当前节点为空时，也即到了左叶子节点，此时把它放入结果集
+    //由图可以看出，首先要找到最左侧的叶子节点存到栈里，然后每次出栈一个节点，遍历打印该节点和右节点
+    func inorderTraversal(_ root: TreeNode?) -> [Int] {
+        var res = [Int]()
+        var stack = [TreeNode]()
+        var currentNode = root
+        
+        while !stack.isEmpty || currentNode != nil {
+            debugPrint("当前node=\(String(describing: currentNode))")
+            if currentNode != nil {
+                stack.append(currentNode!)
+                currentNode = currentNode!.left
+            } else {
+                let prevNode = stack.removeLast()
+                res.append(prevNode.val)
+                currentNode = prevNode.right
+            }
+        }
+        
+        return res
+    }
+    //中序遍历-颜色标记法
+    //使用颜色标记节点的状态，新节点为白色，已访问的节点为灰色。
+    //如果遇到的节点为白色，则将其标记为灰色，然后将其右子节点、自身、左子节点依次入栈。
+    //如果遇到的节点为灰色，则将节点的值输出。
+    //如要实现前序、后序遍历，只需要调整左右子节点的入栈顺序即可。
+    //原帖：https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/yan-se-biao-ji-fa-yi-chong-tong-yong-qie-jian-ming/
+    func inorderTraversal_colorMark(_ root: TreeNode?) -> [Int]{
+        var WHITE = 0, GRAY = 0, color = 0
+        var node = root
+        (WHITE, GRAY) = (0, 1)
+        var res = [Int]()
+        var stack = [(WHITE, root)]
+        while !stack.isEmpty {
+            (color, node) = stack.removeLast()
+            if node == nil {
+                continue
+            }
+            if color == WHITE {
+                stack.append((WHITE, node!.right))
+                stack.append((GRAY, node))
+                stack.append((WHITE, node!.left))
+            }
+            else {
+                res.append(node!.val)
+            }
+        }
+        return res
+    
+    }
+    func testInorderTraversal() {
+        let tree = PPTree(nil)
+        tree.pp_insertNodes([1,3,2])
+        debugPrint(PPTreeSolution().inorderTraversal_colorMark(tree.rootNode))
+    }
+    
+    //MARK:PPLeetCode102. 二叉树的层序遍历，每一层分组
+    
+    func levelOrder(_ root: TreeNode?) -> [[Int]] {
+        var res = [[Int]]()
+        // 用数组来实现队列
+        var queue = [TreeNode]()
+        if let root = root {
+            queue.append(root)
+        }
+        
+        while queue.count > 0 {
+            let size = queue.count
+            var level = [Int]()
+            
+            for _ in 0 ..< size {
+                let node = queue.removeFirst()
+                level.append(node.val)
+                if let left = node.left {
+                    queue.append(left)
+                }
+                if let right = node.right {
+                    queue.append(right)
+                }
+            }
+            //debugPrint("add level array:\(level)")
+            res.append(level)
+        }
+        return res
+        
+    }
+
     //MARK:树的层级遍历，每一层不分组
     //思路：在队列里从左到右依次放入需要迭代的父节点、子左节点、子右节点
     //每次迭代先取出最左边的节点，如果左子节点存在，就放入结果集；如果右子节点存在，也放入结果集
@@ -411,13 +418,40 @@ class PPTreeSolution {
                 // debugPrint("入列=\(node?.left?.val ?? 0)")
             }
             if node?.rightNode != nil {
-                queue.append(node!.rightNode! )
+                queue.append(node!.right! )
                 // debugPrint("入列=\(node?.right?.val ?? 0)")
             }
             // debugPrint("Queue=\(queue)")
         }
         return res
         
+    }
+    //MARK:PPLeetCode144 树的前序遍历
+    //https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
+    //用栈保存需要迭代的节点，res保存结果集
+    //先打印这个节点，然后再打印它的左子树直到左边的叶子节点（left==nil），最后打印它的右子树
+    func preorderTraversal(_ root: TreeNode?) -> [Int] {
+        var res = [Int]()
+        var stack = [TreeNode]()
+        var node = root
+        
+        while !stack.isEmpty || node != nil {
+            debugPrint("node=\(node?.val ?? -1)")
+            if node != nil {
+                res.append(node!.val)
+                stack.append(node!)
+                node = node!.left
+            } else {
+                node = stack.removeLast().right
+            }
+        }
+        
+        return res
+    }
+    
+    #warning("todo")
+    func invertTree(_ root: TreeNode?) -> TreeNode? {
+        return nil
     }
     //MARK:PPLeetCode236 二叉树的最近公共祖先（父节点）
     //题目：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先
@@ -505,6 +539,6 @@ class PPBSTSolution {
         insertIntoBST(root, 1)
         insertIntoBST(root, 3)
         insertIntoBST(root, 5)
-        debugPrint(PPTreeSolution().pp_levelTraverse(root))
+        debugPrint(PPTreeSolution().preorderTraversal(root))
     }
 }
