@@ -449,9 +449,31 @@ class PPTreeSolution {
         return res
     }
     
-    #warning("todo")
+    //PPLeetCode226 翻转二叉树
+    //时间复杂度：每个元素都必须访问一次，所以是O(n)
+    //空间复杂度：最坏的情况下，需要存放O(h)个函数调用(h是树的高度)，所以是O(h)
+    @discardableResult
     func invertTree(_ root: TreeNode?) -> TreeNode? {
-        return nil
+        //递归函数的终止条件，节点为空时返回
+        if(root==nil) {
+            return nil;
+        }
+        //下面三句是将当前节点的左右子树交换
+        let tmp = root!.right
+        root!.right = root!.left
+        root!.left = tmp
+        //递归交换当前节点的 左子树
+        invertTree(root!.left)
+        //递归交换当前节点的 右子树
+        invertTree(root!.right)
+        //函数返回时就表示当前这个节点，以及它的左右子树
+        //都已经交换完了
+        return root
+    }
+    func testInvertTree() {
+        let tree = PPTree(nil)
+        tree.pp_insertNodes([3,1,4])
+        PPTreeSolution().invertTree(tree.rootNode)
     }
     //MARK:PPLeetCode236 二叉树的最近公共祖先（父节点）
     //题目：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先
