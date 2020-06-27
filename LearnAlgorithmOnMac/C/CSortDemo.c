@@ -36,6 +36,10 @@ int LongestPalindrome(const char *s, int n)
     }
     return max;
 }
+//测试用例:
+//const char *testStr = "iambabygirl";
+//LongestPalindrome(testStr, strlen(testStr));
+
 //LeetCode152-C
 //https://leetcode-cn.com/problems/maximum-product-subarray/comments/401259
 int MAX_NUM(int a, int b)

@@ -78,5 +78,9 @@ add:
     }
     return [originString substringWithRange : NSMakeRange (startIndex, endIndex - startIndex + 1)];
 }
-    
+- (void)testFindNoDuplicateSubString {
+    PPUnsortedDemo *demo = [[PPUnsortedDemo alloc] init];
+    NSString *str = [demo findNoDuplicateSubString:@"appleeeeee"];
+    NSLog(@"====%@",str);
+}
 @end

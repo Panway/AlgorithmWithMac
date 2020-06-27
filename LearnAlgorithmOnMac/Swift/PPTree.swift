@@ -61,7 +61,7 @@ open class PPTree {
     init(_ rootNode:PPTreeNode?) {
         self.rootNode = rootNode
     }
-    
+    //二叉搜索树的插入
     func pp_insertNode(_ node:PPTreeNode) {
         if (self.rootNode == nil) {
             self.rootNode = node
@@ -174,39 +174,8 @@ open class PPSearchTree: PPTree {
         }
         return self
     }
-    // MARK:计算树的最大深度
-    func maxDepth(root: PPTreeNode?) -> Int {
-        guard let root = root else {
-          return 0
-        }
-        return max(maxDepth(root: root.leftNode), maxDepth(root: root.rightNode))+1
-    }
     
-    // MARK:判断一颗二叉树是否为二叉查找树
-    /*递归公式：
-     左子树找最大值：max=isValidBST(root.left)
-     右子树找最小值：min=isValidBST(root.right)
-     如果max<root.value且min>root.value，那么即是二叉查找树
-     */
-    func isValidBST(root: PPTreeNode?) -> Bool {
-      return _helper(root, nil, nil)
-    }
-    // 判断node.value在[min,max]范围内
-    private func _helper(_ node: PPTreeNode?, _ min: Int?, _ max: Int?) -> Bool {
-      guard let node = node else {
-        //如果节点没有子节点，也是二叉查找树
-        return true
-      }
-      // 所有右子节点都必须大于根节点
-      if let min = min, node.value <= min {
-        return false
-      }
-      // 所有左子节点都必须小于根节点
-      if let max = max, node.value >= max {
-        return false
-      }
-      return _helper(node.leftNode, min, node.value) && _helper(node.rightNode, node.value, max)
-    }
+    
     
     
     //MARK:PPLeetCode235 二叉搜索树的最近公共祖先（父节点）
@@ -310,6 +279,40 @@ open class PPSearchTree: PPTree {
 
 
 class PPTreeSolution {
+    // MARK:PPLeetCode98 验证是否是二叉搜索树(重要)
+    //https://leetcode-cn.com/problems/validate-binary-search-tree/
+    /*递归公式：
+     左子树找最大值：max=isValidBST(root.left)
+     右子树找最小值：min=isValidBST(root.right)
+     如果max<root.value且min>root.value，那么即是二叉查找树
+     */
+    //我的提交：https://leetcode-cn.com/submissions/detail/82454875/
+    func isValidBST(_ root: TreeNode?) -> Bool {
+        return _helper98(root, nil, nil)
+    }
+    // 判断node.value在(min,max)范围内，注意是开区间
+    private func _helper98(_ node: TreeNode?, _ min: Int?, _ max: Int?) -> Bool {
+        guard let node = node else {
+            //如果节点是nil，也是二叉查找树
+            return true
+        }
+        // 所有右子节点都必须大于根节点
+        if let min = min, node.val <= min {
+            return false
+        }
+        // 所有左子节点都必须小于根节点
+        if let max = max, node.val >= max {
+            return false
+        }
+        //在递归调用左子树时，我们需要把上界 max 改为 node.val，
+        //因为左子树里所有节点的值均小于它的根节点的值。右子树同理
+        return _helper98(node.left, min, node.val) && _helper98(node.right, node.val, max)
+    }
+    func test_isValidBST() {
+        let tree = PPSearchTree(nil)
+        tree.pp_insertNodes([5,1,4,3,6])
+        debugPrint("is valid BST ? \(isValidBST(tree.rootNode))")
+    }
     //MARK:PPLeetCode94 二叉树的中序遍历
     //https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
     //图片辅助理解： https://i.loli.net/2019/11/08/EXNtZ7FOAI1mBWU.png
@@ -448,8 +451,17 @@ class PPTreeSolution {
         
         return res
     }
-    
-    //PPLeetCode226 翻转二叉树
+    // MARK:PPLeetCode104 二叉树的最大深度(重要)
+    // https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
+    func maxDepth(_ root: TreeNode?) -> Int {
+        guard let root = root else {//if root == nil
+            return 0
+        }
+        let leftDepth = maxDepth(root.left)
+        let rightDepth = maxDepth(root.right)
+        return max(leftDepth, rightDepth) + 1//还可以把上面两行写到这里面去
+    }
+    //MARK:PPLeetCode226 翻转二叉树(重要)
     //时间复杂度：每个元素都必须访问一次，所以是O(n)
     //空间复杂度：最坏的情况下，需要存放O(h)个函数调用(h是树的高度)，所以是O(h)
     @discardableResult
