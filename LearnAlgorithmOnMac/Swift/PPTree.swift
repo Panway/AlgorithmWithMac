@@ -454,13 +454,43 @@ class PPTreeSolution {
     // MARK:PPLeetCode104 二叉树的最大深度(重要)
     // https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
     func maxDepth(_ root: TreeNode?) -> Int {
-        guard let root = root else {//if root == nil
+        guard let root = root else {//root为空就返回0
             return 0
         }
         let leftDepth = maxDepth(root.left)
         let rightDepth = maxDepth(root.right)
         return max(leftDepth, rightDepth) + 1//还可以把上面两行写到这里面去
     }
+    //MARK:PPLeetCode112. 路径总和
+    //给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
+    //https://leetcode-cn.com/problems/path-sum/
+    func hasPathSum(_ root: TreeNode?, _ sum: Int) -> Bool {
+        guard let root = root else {
+            return false
+        }
+        if root.left == nil && root.right == nil {//如果是叶子节点
+            return root.val == sum
+        }
+        /*
+         //我的错误提交，在[1,2] 1的情况下不应该是true。合着必须有根节点到叶子节点？只有根节点不行？
+        if root.val == sum {
+            return true
+        }
+        */
+        let leftSum = hasPathSum(root.left, sum - root.val)
+        let rightSum = hasPathSum(root.right, sum - root.val)
+
+        return leftSum || rightSum
+    }
+    func test_hasPathSum() {
+        let tree = PPTree(nil)
+        //https://i.loli.net/2019/11/08/EXNtZ7FOAI1mBWU.png
+        tree.pp_insertNodes([1,2])//([10,7,12,3,9,11,1,4,8])
+        debugPrint(hasPathSum(tree.rootNode, 1))
+    }
+//    fileprivate func _helper112(_ root: TreeNode?, _ sum: Int) -> Bool {
+//
+//    }
     //MARK:PPLeetCode226 翻转二叉树(重要)
     //时间复杂度：每个元素都必须访问一次，所以是O(n)
     //空间复杂度：最坏的情况下，需要存放O(h)个函数调用(h是树的高度)，所以是O(h)

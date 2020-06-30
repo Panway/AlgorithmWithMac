@@ -9,24 +9,13 @@
 //#import <Cocoa/Cocoa.h>
 #import <LearnAlgorithmOnMac-Swift.h>
 #import <Foundation/Foundation.h>
-#import "PPUnsortedDemo.h"
 
 
 int main(int argc, const char * argv[]) {
-//    const char *testStr = "iambabygirl";
-//    LongestPalindrome(testStr, strlen(testStr));
-//    PPUnsortedDemo *demo = [[PPUnsortedDemo alloc] init];
-//    NSString *str = [demo findNoDuplicateSubString:@"appleeeeee"];
-    
     
     PPCodeEntry *link = [[PPCodeEntry alloc] init];
     [link testCaseEntrance];
     
-//    struct BinaryTreeNode root1={
-//        1,NULL,NULL};
-//    root1->val = 1;
-//    preOrder(root1);
-//    main_linkTable1();
     @autoreleasepool {
         // Setup code that might create autoreleased objects goes here.
     }
