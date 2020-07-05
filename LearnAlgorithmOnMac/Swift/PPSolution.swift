@@ -9,7 +9,7 @@
 import Foundation
 
 class PPSolution {
-    
+    // MARK:PPLeetCode120 三角形最小路径和
     /// PPLeetCode120 三角形最小路径和 https://leetcode-cn.com/problems/triangle/
     ///
     ///     [
@@ -54,7 +54,7 @@ class PPSolution {
         debugPrint(result)
     }
     
-    
+    //MARK:PPLeetCode3 无重复字符的最长子串长度
     ///PPLeetCode3 https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
     ///无重复字符的最长子串长度
     ///
@@ -103,9 +103,40 @@ class PPSolution {
         
         return maxLen
     }
-
+    //MARK:PPLeetCode14. 最长公共前缀
+    //https://leetcode-cn.com/problems/longest-common-prefix/
+    func longestCommonPrefix(_ strs: [String]) -> String {
+        if strs.count < 1 {
+            return ""
+        }
+        var longest = [Character]()
+        let first = Array(strs[0])
+        for i in 0..<first.count {
+            for string in strs {
+                if string.count - 1 < i {
+                    return String(longest)
+                }
+                let char = Array(string)[i]
+                if char == first[i] {
+                    continue
+                }
+                else {
+                    return String(longest)
+                }
+            }
+            longest.append(first[i])
+        }
+        return String(longest)
+    }
     
-    
+    //其他解法：
+    //先排序，后比较头尾即可: https://leetcode-cn.com/problems/longest-common-prefix/solution/zui-chang-gong-gong-qian-zhui-by-leetcode-solution/444554
+    func test_longestCommonPrefix() {
+        var res = longestCommonPrefix(["flower","flow","flight"])
+        res = longestCommonPrefix(["dog","racecar","car"])
+        res = longestCommonPrefix(["aa","a"])
+        debugPrint(res)
+    }
     //  老胡的OC转Swift版 - https://objectivec2swift.com/
     func findNoDuplicateSubString(_ originString: String) -> String? {
         if originString.count == 0 {
@@ -140,7 +171,7 @@ class PPSolution {
         result = lengthOfLongestSubstring("pwwkew")
         debugPrint(result)
     }
-    
+    //MARK:PPLeetCode53 最大子序和
     // PPLeetCode53 最大子序和 https://leetcode-cn.com/problems/maximum-subarray/
     //[-12,3,6,9,1,-9,0,8,7,9,-3]
     // 贪心算法，每一步都选择最佳方案，到最后就是全局最优的方案。
@@ -182,7 +213,7 @@ class PPSolution {
         return res
     }
     
-    //PPLeetCode152 乘积最大子数组
+    //MARK:PPLeetCode152 乘积最大子数组
     //答案来自：https://leetcode-cn.com/problems/maximum-product-subarray/solution/hua-jie-suan-fa-152-cheng-ji-zui-da-zi-xu-lie-by-g/
     //解题思路：每轮循环比较`累乘乘积`和`当前数字`，二者最大值为resMax，二者最小值为resMin，
     //然后比较`上次乘积最大值`res和resMax谁最大，最大的即结果
