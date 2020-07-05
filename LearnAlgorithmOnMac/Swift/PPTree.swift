@@ -374,7 +374,7 @@ class PPTreeSolution {
     }
     
     //MARK:PPLeetCode102. 二叉树的层序遍历，每一层分组
-    
+    //https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
     func levelOrder(_ root: TreeNode?) -> [[Int]] {
         var res = [[Int]]()
         // 用数组来实现队列
@@ -403,7 +403,104 @@ class PPTreeSolution {
         return res
         
     }
-
+    //《剑指Offer》面试题32解法：
+    //在下面的代码中，变量 toBePrinted表示在当前层中还没有打印的节点数，而变量 nextLevel表示下一层的节点数。
+    //如果一个节点有子节点，则每把一个子节点加入队列，同时把变量 nextLevel加1.
+    //每打印一个节点 toBePrinted减1。当 toBePrinted变成0时，表示当前层的所有节点已经打印完毕，可以继续打印下一层。
+    func levelOrderJZOF(_ root: TreeNode?) -> [[Int]] {
+        var res = [[Int]]()
+        var queue = [TreeNode]()
+        var nextLevel = 0 //下一层需要打印的节点数
+        var toBePrinted = 1 //当层还没被打印的节点数
+        if let root = root {
+            queue.append(root)
+        }
+        var level = [Int]()
+        while queue.count > 0 {
+            let node = queue.removeFirst()
+            debugPrint(node.val)
+            level.append(node.val)
+            if let left = node.left {
+                queue.append(left)
+                nextLevel += 1
+            }
+            if let right = node.right {
+                queue.append(right)
+                nextLevel += 1
+            }
+            toBePrinted -= 1
+            if toBePrinted == 0 {
+                debugPrint("\n")
+                res.append(level)
+                level.removeAll()
+                toBePrinted = nextLevel
+                nextLevel = 0
+            }
+        }
+        return res
+    }
+    //Z形打印
+    //题目：https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/
+    //我的解法：https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/solution/jian-zhi-offerzhi-zi-xing-da-yin-bian-chong-hao-sh/
+    func levelOrderInZigzag(_ root: TreeNode?) -> [[Int]] {
+        var res = [[Int]]()
+        var queue = [TreeNode]()
+        var nextLevel = 0 //下一层需要打印的节点数
+        var toBePrinted = 1 //当层还没被打印的节点数
+        if let root = root {
+            queue.append(root)
+        }
+        var level = [Int]()
+        
+        var index = 0
+        while queue.count > 0 {
+            var node : TreeNode
+            if index%2 == 0 {
+                node = queue.removeFirst()
+                debugPrint(node.val)
+                level.append(node.val)
+                if let left = node.left {
+                    queue.append(left)
+                    nextLevel += 1
+                }
+                if let right = node.right {
+                    queue.append(right)
+                    nextLevel += 1
+                }
+            }
+            else {
+                node = queue.removeLast()
+                debugPrint(node.val)
+                level.append(node.val)
+                if let right = node.right {
+                    queue.insert(right, at: 0)
+                    nextLevel += 1
+                }
+                if let left = node.left {
+                    queue.insert(left, at: 0)
+                    nextLevel += 1
+                }
+            }
+            debugPrint(queue)
+            toBePrinted -= 1
+            if toBePrinted == 0 {
+                index = 1 - index //奇偶交替
+                debugPrint("\n")
+                res.append(level)
+                level.removeAll()
+                toBePrinted = nextLevel
+                nextLevel = 0
+            }
+        }
+        return res
+    }
+    func test_levelOrder() {
+        //树长这个样：https://i.loli.net/2019/11/24/Q8Rn3lEk5fx4qgB.png
+        let tree = PPTree(nil)
+        tree.pp_insertNodes([20,13,34,25,17,7,29,15,8,32,24,6,36,19,21,12,16,14,18])
+        let array2 = PPTreeSolution().levelOrderInZigzag(tree.rootNode)
+        debugPrint(array2)
+    }
     //MARK:树的层级遍历，每一层不分组
     //思路：在队列里从左到右依次放入需要迭代的父节点、子左节点、子右节点
     //每次迭代先取出最左边的节点，如果左子节点存在，就放入结果集；如果右子节点存在，也放入结果集
