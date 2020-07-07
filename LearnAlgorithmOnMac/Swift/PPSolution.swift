@@ -267,7 +267,48 @@ class PPSolution {
         return res
     }
     
+    //MARK:PPLeetCode300. 最长(不连续的)上升子序列的长度
+    //https://leetcode-cn.com/problems/longest-increasing-subsequence/
+    ///https://leetcode-cn.com/problems/increasing-triplet-subsequence/
     
-    
+    //https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-dong-tai-gui-hua-e/
+    //新建数组 result，用于保存最长上升子序列。
+    //对原序列进行遍历，将每位元素二分插入 cell 中。
+    //如果 result 中元素都比它小，将它插到最后；否则用它覆盖掉比它大的元素中最小的那个。
+    func lengthOfLIS(_ nums: [Int]) -> Int {
+        guard let first = nums.first else {
+            return 0
+        }
+        var result = [first]
+        for i in 1..<nums.count {
+            if nums[i] > result.last! {
+                result.append(nums[i])
+                debugPrint(result)
+                continue
+            }
+            var left = 0, right = result.count - 1
+            while left < right {
+                let mid = (right - left) / 2 + left
+                debugPrint("left=\(left) right=\(right)")
+                debugPrint("-----------------------ends[\(mid)]=\(result[mid]) nums[\(i)]=\(nums[i])")
+                if result[mid] < nums[i] {
+                    left = mid + 1
+                } else {
+                    right = mid
+                }
+                debugPrint("left=\(left) right=\(right)")
+            }
+            result[right] = nums[i]
+            debugPrint(result)
+        }
+        return result.count
+    }
+
+    func test_lengthOfLIS() {
+        let res = lengthOfLIS([10,9,2,5,3,7,101,18])
+//        let res = lengthOfLIS([5,1,5,5,2,5,4])
+//        let res = lengthOfLIS([2,1,5,0,3])
+        debugPrint(res)
+    }
     
 }
