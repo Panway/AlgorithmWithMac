@@ -59,32 +59,58 @@ class PPSolution {
     ///无重复字符的最长子串长度
     ///
     ///思路：
-    ///初始化游标开始位start，结束位end，最大子字符串长度ans，Hash记录cache
+    ///初始化开始位start=0，结束位end=0，最大子字符串长度ans=0，Hash记录cache
     ///
     ///如果没有重复字符出现：
-    ///循环 游标end开始步进，如果没有遇到重复字符ans为 （end - start ），并用当前字符为Key记录当前 end 游标的index
+    ///循环 游标end开始往右移动，如果没有遇到重复字符则 ans=(end - start)，
+    ///并用当前字符为Key、当前end游标的所在的index为value更新Hash表
     ///
     ///    有重复字符出现
-    ///    1.如果碰到重复字符(从我们Hash记录中找到)
-    ///    2.更新start游标移动至上次记录的重复字符下标的后一位
+    ///    1.如果碰到重复字符(从Hash表中找到)
+    ///    2.把start游标移动至之前出现过的这个重复的字符下标的后一位:max(start, cacheVal)
     ///    3.取之前ans字符长度和现在字符长度最大值为新的无重复字符的最长子串
     ///
     ///    循环直到s的最后一位
     func lengthOfLongestSubstring(_ s: String) -> Int {
         var ans = 0,start = 0,end = 0
         let characters = Array(s)
-        var cache:[Character: Int] = [:]
+        var hash = [Character: Int]()
         let length = s.count
-        while start < length && end < length {
+        while end < length && start < length {//亲测start < length不写也没事！
             let char = characters[end]
-            if let cacheVal = cache[char] {
-                start = max(start, cacheVal)//应付"abba"这种特例
+            if let preIndex = hash[char] {
+                start = max(start, preIndex)//应付"abba"这种特例
             }
             end += 1
             ans = max(ans, end - start )
-            cache[char] = end
+            hash[char] = end
         }
         return ans
+    }
+    //《剑指Offer》48同题思路：
+    //思路见笔记： http://note.youdao.com/s/BjzpLI2d
+    func lengthOfLongestSubstringJZOF(_ s: String) -> Int {
+        var curLength = 0
+        var maxLength = 0
+        var position = Array(repeating: -1, count: 128)//数组里每个初始化都是-1，当做哈希表，26个字母不够用
+        let chars = Array(s)
+        for i in 0..<chars.count {
+            guard let charASCII = chars[i].asciiValue else {
+                continue
+            }
+            let index = Int(charASCII)
+            let prevIndex = position[index]
+            if prevIndex < 0 || i - prevIndex > curLength {
+                curLength += 1
+            }
+            else {
+                maxLength = max(curLength, maxLength)
+                curLength = i - prevIndex//距离
+            }
+            position[index] = i
+        }
+        maxLength = max(curLength, maxLength)
+        return maxLength
     }
     //github.com/soapyigu https://leetcode-cn.com/submissions/detail/38932086/
     func lengthOfLongestSubstring2(_ s: String) -> Int {
@@ -102,6 +128,11 @@ class PPSolution {
         }
         
         return maxLen
+    }
+    
+    func test_lengthOfLongestSubstringJZOF() {
+        let res = lengthOfLongestSubstringJZOF("arabcacfr")//"arabcacfr" " "
+        debugPrint(res)
     }
     //MARK:PPLeetCode14. 最长公共前缀
     //https://leetcode-cn.com/problems/longest-common-prefix/
