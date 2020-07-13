@@ -19,21 +19,23 @@ class JobClass {
     var duration = 1
 }
 
-//class PersonClass {
-struct PersonClass {
+class PersonClass {
     var name = "unknown"
     var jobStruct : JobStruct?
     var jobClass : JobClass?
-
+    
     func makeFood() {
         print("Cook Seafood")
-    }
-    func testPerson() {
     }
     //class用
     init(name:String) {
         self.name = name
     }
+}
+struct PersonStruct {
+    var name = "unknown"
+    var jobStruct : JobStruct?
+    var jobClass : JobClass?
 }
 
 
@@ -42,9 +44,13 @@ class PPiOSInterviewDemo {
     class func demo() {
         
     }
+    /// 值类型和引用类型的区别（用结构体和类来当例子区别）
+    /// LLDB控制台打印内存地址：frame var -L 你的变量
+    /// https://zhuanlan.zhihu.com/p/63186927
+    /// 终极总结：引用类型不管是否嵌套，赋值后也都只在内存里有一份
     class func class_vs_Struct() {
-        var personA = PersonClass(name: "Alice")
-        var personB = PersonClass(name: "Bob")
+        var personA = PersonStruct(name: "Alice")
+        var personB = PersonStruct(name: "Bob")
         var cook_s = JobStruct(name: "cook")
         let cook_c = JobClass()
         cook_c.name = "cook"
@@ -65,29 +71,50 @@ class PPiOSInterviewDemo {
         var array = [personA,personB]
         debugPrint(array.map{$0.name})
         let array2 = array
-        array[0].name = "new A"
+        array[0].name = "Alice new"
         debugPrint(array.map{$0.name})
         var p2 = array[1]
-        p2.name = "new B"
+        p2.name = "Bob new"
         debugPrint(array.map{$0.name})
         debugPrint(array2.map{$0.name})
         debugPrint("--- end ---")
         /*如果 personA personB是类：
          "--- start ---"
          ["Alice", "Bob"]
-         ["new A", "Bob"]
-         ["new A", "new B"]
-         ["new A", "new B"]
+         ["Alice new", "Bob"]
+         ["Alice new", "Bob new"]
+         ["Alice new", "Bob new"]
          "--- end ---"
          
-         如果 personA personB是类：
+         如果 personA personB是结构体：
          "--- start ---"
          ["Alice", "Bob"]
-         ["new A", "Bob"]
-         ["new A", "Bob"]
+         ["Alice new", "Bob"]
+         ["Alice new", "Bob"]
          ["Alice", "Bob"]
          "--- end ---"
          */
+        
+        // 引用类型套值类型
+        let playboy = PersonClass(name: "playboy")
+        var playboyjob = JobStruct()
+        playboy.jobStruct = playboyjob
+        playboyjob.name = "playboy job new"
+        debugPrint(playboy.jobStruct?.name ?? "")
+        //结论：嵌套的值类型实例赋值给其他变量后，就算修改它不会变
+        
+        // 值类型套引用类型
+        var xuxian = PersonStruct(name: "许仙")
+        var xuxian2 = xuxian
+        let xuxianjob = JobClass()
+        xuxian.jobClass = xuxianjob
+        xuxianjob.name = "救白素贞"
+        debugPrint(xuxian.jobClass?.name ?? "")
+        //结论：嵌套的值类型实例赋值给其他变量后，修改就会变
+        debugPrint("-----END-----")
+        
+        
+        
     }
     
     func forLoopWithoutAutoReleasePool() {
