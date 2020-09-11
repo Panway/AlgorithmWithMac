@@ -52,14 +52,17 @@ class PPTreeNode:CustomStringConvertible {
     }
 }
 
-//class PPSearchTreeNode: PPTreeNode {
-//
-//}
+class PPSearchTreeNode: PPTreeNode {
+
+}
 ///普通二叉树
 open class PPTree {
     var rootNode:PPTreeNode?
     init(_ rootNode:PPTreeNode?) {
         self.rootNode = rootNode
+    }
+    init() {
+        
     }
     //二叉搜索树的插入
     func pp_insertNode(_ node:PPTreeNode) {

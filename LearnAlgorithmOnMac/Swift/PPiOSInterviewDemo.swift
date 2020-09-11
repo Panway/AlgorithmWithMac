@@ -14,9 +14,14 @@ struct JobStruct {
     var name = "unknown"
     var duration = 1
 }
+
 class JobClass {
     var name = "unknown"
     var duration = 1
+    //class用
+    init(name:String) {
+        self.name = name
+    }
 }
 
 class PersonClass {
@@ -32,6 +37,7 @@ class PersonClass {
         self.name = name
     }
 }
+
 struct PersonStruct {
     var name = "unknown"
     var jobStruct : JobStruct?
@@ -39,7 +45,15 @@ struct PersonStruct {
 }
 
 
-
+class PandaClass:NSObject {
+    var name = "unknown"
+    init(name:String) {
+        self.name = name
+    }
+    override init () {
+        super.init()
+    }
+}
 class PPiOSInterviewDemo {
     class func demo() {
         
@@ -49,10 +63,31 @@ class PPiOSInterviewDemo {
     /// https://zhuanlan.zhihu.com/p/63186927
     /// 终极总结：引用类型不管是否嵌套，赋值后也都只在内存里有一份
     class func class_vs_Struct() {
+        //字符串类型(值类型)
+        var str_Baker = "Baker"
+        let str_Baker2Coder = str_Baker
+        str_Baker = "Coder"
+        debugPrint("\(str_Baker) and \(str_Baker2Coder)")//Coder and Baker
+        
+        //引用类型套引用类型1
+        let c_Baker = JobClass(name: "Baker")
+        let c_Baker2Coder = c_Baker
+        c_Baker.name = "Coder"
+        debugPrint("\(c_Baker.name ) and \(c_Baker2Coder.name )")//Coder and Coder
+        
+        //引用类型套引用类型2
+        let c_Dancer = PersonClass(name: "Dancer")
+        c_Dancer.jobClass = JobClass(name: "Dancer")
+        let c_Dancer2Editor = c_Dancer
+        c_Dancer.jobClass = JobClass(name: "Editor")
+        debugPrint("\(c_Dancer.jobClass?.name ?? "") and \(c_Dancer2Editor.jobClass?.name ?? "")")//Editor and Editor
+        
+        
+        
         var personA = PersonStruct(name: "Alice")
         var personB = PersonStruct(name: "Bob")
         var cook_s = JobStruct(name: "cook")
-        let cook_c = JobClass()
+        let cook_c = JobClass(name: "c_cook")
         cook_c.name = "cook"
         
         personA.jobStruct = cook_s
@@ -106,7 +141,7 @@ class PPiOSInterviewDemo {
         // 值类型套引用类型
         var xuxian = PersonStruct(name: "许仙")
         var xuxian2 = xuxian
-        let xuxianjob = JobClass()
+        let xuxianjob = JobClass(name: "doctor")
         xuxian.jobClass = xuxianjob
         xuxianjob.name = "救白素贞"
         debugPrint(xuxian.jobClass?.name ?? "")

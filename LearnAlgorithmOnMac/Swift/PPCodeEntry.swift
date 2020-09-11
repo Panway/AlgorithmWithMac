@@ -96,7 +96,7 @@ open class PPCodeEntry : NSObject {
         //        let node3 = node
         //图片辅助理解： https://i.loli.net/2019/11/24/Q8Rn3lEk5fx4qgB.png
         //https://i.loli.net/2019/11/08/EXNtZ7FOAI1mBWU.png
-        let tree = PPSearchTree.init(rootNode: nil)
+        let tree = PPSearchTree()
 //        tree.pp_insertNodes([20,13,34,25,17,7,36])
 //        tree.pp_insertNodes([33,16,50,13,18,34,58,15,17,25,51,66,19,27,55])//https://static001.geekbang.org/resource/image/29/2c/299c615bc2e00dc32225f4d9e3490e2c.jpg
         
@@ -108,15 +108,15 @@ open class PPCodeEntry : NSObject {
         tree.pp_insertNodes([25,51,66,19,27])
         let qNode = PPSearchTreeNode(55)
         tree.pp_insertNode(qNode)
-        let lowestAncestor = tree.lowestCommonAncestorOfTree(root: tree.rootNode!, p: pNode, q: qNode)
+        let lowestAncestor = tree.lowestCommonAncestor(root: tree.rootNode!, p: pNode, q: qNode)
         debugPrint(lowestAncestor as Any)//二叉树的最近公共祖先
         
         
-        tree.pp_deleteNode(13)
-        debugPrint("is valid tree ? \(tree.isValidBST(root: tree.rootNode))")
+        //tree.pp_deleteNode(13)
+        debugPrint("is valid tree ? \(PPTreeSolution().isValidBST(tree.rootNode))")
 //        tree.pp_insertNodes([20,13,34,25,17,7,29,15,8,32,24,6,36,19,21,12,16,14,18])
-        let array = tree.levelOrder(root: tree.rootNode)
-        print(array)
+//        let array = tree.levelOrder(root: tree.rootNode)
+//        print(array)
         
 //        let sortDemo = PPSortDemo.init()
 //        sortDemo.insetSort(numsArray: [3,1,5,2,4])
