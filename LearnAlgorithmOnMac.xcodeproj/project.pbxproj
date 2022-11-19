@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EFBA6F42927B429005B7347 /* PPMethodExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EFBA6F32927B429005B7347 /* PPMethodExchange.m */; };
 		6003A3A32392A17100515B41 /* PPUnsortedDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003A3A22392A17100515B41 /* PPUnsortedDemo.m */; };
 		60046E5C23FEE4D40036DFBB /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60046E5A23FEE4D40036DFBB /* Queue.swift */; };
 		60046E5D23FEE4D40036DFBB /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60046E5B23FEE4D40036DFBB /* LinkedList.swift */; };
@@ -66,6 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EFBA6F22927B429005B7347 /* PPMethodExchange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPMethodExchange.h; sourceTree = "<group>"; };
+		1EFBA6F32927B429005B7347 /* PPMethodExchange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPMethodExchange.m; sourceTree = "<group>"; };
 		6003A3A12392A17100515B41 /* PPUnsortedDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPUnsortedDemo.h; sourceTree = "<group>"; };
 		6003A3A22392A17100515B41 /* PPUnsortedDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPUnsortedDemo.m; sourceTree = "<group>"; };
 		60046E5A23FEE4D40036DFBB /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -148,10 +151,12 @@
 		6003A3A02392A0ED00515B41 /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
-				6003A3A12392A17100515B41 /* PPUnsortedDemo.h */,
-				6003A3A22392A17100515B41 /* PPUnsortedDemo.m */,
+				1EFBA6F22927B429005B7347 /* PPMethodExchange.h */,
+				1EFBA6F32927B429005B7347 /* PPMethodExchange.m */,
 				6051B72D23ACC362003E3EAF /* PPTicketSeller.h */,
 				6051B72E23ACC362003E3EAF /* PPTicketSeller.m */,
+				6003A3A12392A17100515B41 /* PPUnsortedDemo.h */,
+				6003A3A22392A17100515B41 /* PPUnsortedDemo.m */,
 			);
 			path = ObjC;
 			sourceTree = "<group>";
@@ -421,6 +426,7 @@
 				60046E5D23FEE4D40036DFBB /* LinkedList.swift in Sources */,
 				601A6F55237BF478005A7BD9 /* PPCodeEntry.swift in Sources */,
 				601A6F1B237BF2A6005A7BD9 /* AppDelegate.m in Sources */,
+				1EFBA6F42927B429005B7347 /* PPMethodExchange.m in Sources */,
 				6051B72F23ACC362003E3EAF /* PPTicketSeller.m in Sources */,
 				601A6F64237BF484005A7BD9 /* MeetingTime.swift in Sources */,
 				603E20A823B5D28700E4460D /* PPiOSInterviewDemo.swift in Sources */,
